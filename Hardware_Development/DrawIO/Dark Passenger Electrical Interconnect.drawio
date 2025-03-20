@@ -1,6 +1,6 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" modified="2025-03-11T22:21:41.465Z" etag="tlusmtsJgM7VkoMmmqpx" version="21.2.8" type="device">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
   <diagram name="Page-1" id="o3p5K8Tt1Z_R2w1E8vlr">
-    <mxGraphModel dx="9395" dy="2970" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="4885" dy="446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1379,32 +1379,38 @@
         <mxCell id="b5lcpwxID4FFxWcjBPYs-57" value="Micro-B USB" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-1480.24" y="5190" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-1" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Depth Camera&lt;br&gt;ZED&lt;br&gt;Stereo Labs&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-1" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Depth Camera&lt;br&gt;ZED&lt;br&gt;Stereo Labs&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="-930" y="5160" width="290.24" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-2" value="Micro-B USB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-2" value="Micro-B USB" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-1010" y="5180" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-3" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;USB Speaker&lt;br&gt;Anker&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-3" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;USB Speaker&lt;br&gt;Anker&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="-520" y="5160" width="290.24" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-4" value="Micro-B USB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-4" value="Micro-B USB" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-600" y="5350" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-5" value="AUDIO AUX" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-5" value="AUDIO AUX" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-810" y="4820" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-6" value="AUDIO AUX" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-6" value="AUDIO AUX" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-600" y="5190" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-8" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;Arduino Microcontroller&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-8" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;Arduino Microcontroller&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="-2090" y="5590" width="290.24" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-9" value="Micro USB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-9" value="Micro USB" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-2170" y="5610" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-10" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;MPU6050 IMU&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-10" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;MPU6050 IMU&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="-320" y="4730" width="290.24" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="rSTYdozW8TaYn3ZcFOL7-1" value="GPIOs Needed&lt;div&gt;4x for Motor Control&lt;/div&gt;&lt;div&gt;4x for wheel ENC and SW&lt;/div&gt;&lt;div&gt;1x for readig battery voltage&lt;/div&gt;&lt;div&gt;dont forget pullup resistors&lt;/div&gt;&lt;div&gt;INS: I2C: SDA and SCL&lt;br&gt;&lt;/div&gt;&lt;div&gt;4x Stepper Motor Controller:&lt;/div&gt;&lt;div&gt;2x Neopixel strand&lt;/div&gt;&lt;div&gt;1x for led relay&lt;/div&gt;&lt;div&gt;3x for toggle switches&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Relay Turret&lt;/div&gt;&lt;div&gt;1x Trigger for relay&lt;/div&gt;&lt;div&gt;1x trigger for led relay&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-660" y="4152.5" width="230" height="257.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rSTYdozW8TaYn3ZcFOL7-2" value="Now make it modular and add more GPIO breakouts.&lt;div&gt;Next step is to specify the voltage needed on GPIOs. I think everything is 5V.&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-440" y="4133.75" width="230" height="257.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
