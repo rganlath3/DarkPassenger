@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Dark Passenger Power Distro Schematic")
-		(date "2025-03-08")
-		(rev "V1")
+		(date "2025-03-18")
+		(rev "V2")
 		(comment 1 "Email: ranil.ganlath@gmail.com")
 		(comment 2 "Author: Ranil Ganlath")
 	)
@@ -1561,7 +1561,7 @@
 	)
 	(rectangle
 		(start 85.09 31.75)
-		(end 198.12 73.66)
+		(end 209.55 73.66)
 		(stroke
 			(width 0)
 			(type default)
@@ -1570,6 +1570,18 @@
 			(type none)
 		)
 		(uuid e2efa269-4fbc-4aa6-b407-68a5894e3f3f)
+	)
+	(text "Fixes needed for Rev V2.\nFix + and - on Terminal Blocks to match the actual components."
+		(exclude_from_sim no)
+		(at 132.334 27.94 0)
+		(effects
+			(font
+				(size 5 5)
+				(italic yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "2c989187-1fb5-4f95-b1cf-2d84a67344b6")
 	)
 	(text "20VDC Distribution"
 		(exclude_from_sim no)
@@ -1610,20 +1622,21 @@
 		)
 		(uuid "3c534f42-3c38-4d9e-bd20-478fe7b72f06")
 	)
-	(text "FIX RES VALUE"
+	(text "21V = 3.2V\n20V = 3.0V\n19V = 2.9V\n18V = 2.7V\n17V = 2.6V\n16V = 2.4V\n15V = 2.2V"
 		(exclude_from_sim no)
-		(at 143.51 49.53 0)
+		(at 195.072 49.53 0)
 		(effects
 			(font
 				(size 1.27 1.27)
+				(italic yes)
 			)
 			(justify left bottom)
 		)
-		(uuid "4e42825e-7bd4-4955-8f34-1a5626202b1e")
+		(uuid "4baa7770-97b3-442c-a59c-ffe9b8ee2630")
 	)
 	(text "Voltage Divider to give 3.3V Battery Life"
 		(exclude_from_sim no)
-		(at 157.48 62.23 0)
+		(at 163.068 64.262 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2899,7 +2912,7 @@
 		(fields_autoplaced yes)
 		(uuid "21044494-01b3-4899-b9e2-4d847b6e32ba")
 		(property "Reference" "R7"
-			(at 165.1 53.975 0)
+			(at 165.1 53.3399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2907,8 +2920,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1.571kohm"
-			(at 165.1 56.515 0)
+		(property "Value" "1kohm"
+			(at 165.1 55.8799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4706,7 +4719,7 @@
 		(fields_autoplaced yes)
 		(uuid "b58bf512-616e-4bb2-9baf-14f2580c2547")
 		(property "Reference" "R5"
-			(at 143.51 44.45 0)
+			(at 143.51 44.4499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4714,8 +4727,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "200ohm"
-			(at 143.51 46.99 0)
+		(property "Value" "1k"
+			(at 143.51 46.9899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5121,7 +5134,7 @@
 		(fields_autoplaced yes)
 		(uuid "e0108853-4e49-47cb-a4a3-53a0a11d698b")
 		(property "Reference" "R6"
-			(at 165.1 43.815 0)
+			(at 165.1 43.1799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5129,8 +5142,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10kohm"
-			(at 165.1 46.355 0)
+		(property "Value" "5.6kohm"
+			(at 165.1 45.7199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
