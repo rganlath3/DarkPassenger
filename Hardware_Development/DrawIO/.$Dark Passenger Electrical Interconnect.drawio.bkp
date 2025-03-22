@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" modified="2025-03-20T17:43:26.680Z" version="21.2.8" etag="u07_IKLmLSJMUYhm7Mj0" type="device">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" modified="2025-03-20T17:43:31.630Z" version="21.2.8" etag="v_UY8x2gEOiwP2c-1-Vf" type="device">
   <diagram name="Page-1" id="o3p5K8Tt1Z_R2w1E8vlr">
     <mxGraphModel dx="6823" dy="1485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -1862,7 +1862,7 @@
         <mxCell id="8FU71av9sZx5OES5LHOV-193" value="3.3V or 5V Logic" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" vertex="1" parent="1">
           <mxGeometry x="2079.76" y="5556.25" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="8FU71av9sZx5OES5LHOV-195" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;LED Relay&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="8FU71av9sZx5OES5LHOV-195" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;LED Relay 2&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="1910" y="5280" width="290.24" height="100" as="geometry" />
         </mxCell>
         <mxCell id="8FU71av9sZx5OES5LHOV-196" value="VDD (3V or 5V)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
