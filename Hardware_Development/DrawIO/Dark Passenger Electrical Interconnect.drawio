@@ -1,6 +1,6 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" modified="2025-03-24T16:41:48.127Z" etag="mozZ2F3vhIMk8XEKn_Fy" version="21.2.8" type="device">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" modified="2025-03-25T01:27:17.978Z" etag="5MqeYEk95QUlRAGihKN5" version="21.2.8" type="device">
   <diagram name="Page-1" id="o3p5K8Tt1Z_R2w1E8vlr">
-    <mxGraphModel dx="10245" dy="-330" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="7521" dy="-1902" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -28,7 +28,7 @@
         <mxCell id="dscM8rg76Godcu62DQuX-223" value="&lt;span style=&quot;font-size: 52px;&quot;&gt;&lt;b&gt;Dark Passenger Wiring Interconnect&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=4" parent="1" vertex="1">
           <mxGeometry x="-2900" y="3530" width="952" height="106" as="geometry" />
         </mxCell>
-        <mxCell id="d8nVm0N1XNumEtVjfZm5-1" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;2-Channel Motor Driver&lt;br&gt;MDD10A&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="d8nVm0N1XNumEtVjfZm5-1" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;2-Channel Motor Driver&lt;br&gt;MDD10A&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-1675" y="4203.75" width="370" height="205" as="geometry" />
         </mxCell>
         <mxCell id="d8nVm0N1XNumEtVjfZm5-9" value="Run motors at 25% PWM" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=7" parent="1" vertex="1">
@@ -80,7 +80,7 @@
         <mxCell id="d8nVm0N1XNumEtVjfZm5-15" value="6" style="rounded=0;whiteSpace=wrap;html=1;arcSize=27;glass=0;" parent="1" vertex="1">
           <mxGeometry x="-2020" y="4211.5" width="30" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="d8nVm0N1XNumEtVjfZm5-16" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;LEFT WHEEL ASSEMBLY&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="d8nVm0N1XNumEtVjfZm5-16" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;LEFT WHEEL ASSEMBLY&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-2330" y="4069" width="310" height="205" as="geometry" />
         </mxCell>
         <mxCell id="d8nVm0N1XNumEtVjfZm5-18" value="MOTOR TERMINAL A" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -239,7 +239,7 @@
         <mxCell id="d8nVm0N1XNumEtVjfZm5-56" value="2" style="rounded=0;whiteSpace=wrap;html=1;arcSize=27;glass=0;" parent="1" vertex="1">
           <mxGeometry x="-2020" y="3915.75" width="30" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="d8nVm0N1XNumEtVjfZm5-61" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;RIGHT WHEEL ASSEMBLY&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="d8nVm0N1XNumEtVjfZm5-61" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;RIGHT WHEEL ASSEMBLY&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-2330" y="3853.25" width="310" height="205" as="geometry" />
         </mxCell>
         <mxCell id="d8nVm0N1XNumEtVjfZm5-62" value="MOTOR TERMINAL A" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -850,7 +850,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="rzsOPJHGUJLUK6VHmvos-10" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;MPU9250 IMU&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="rzsOPJHGUJLUK6VHmvos-10" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;MPU9250 IMU&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-261.9999999999999" y="3867.37" width="206.88" height="160" as="geometry" />
         </mxCell>
         <mxCell id="8FU71av9sZx5OES5LHOV-1" value="VCC (3V or 5V)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -883,7 +883,7 @@
         <mxCell id="8FU71av9sZx5OES5LHOV-142" value="3.3V or 5V Logic" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" parent="1" vertex="1">
           <mxGeometry x="-32.009999999999884" y="5852.5" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="8FU71av9sZx5OES5LHOV-146" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Neopixel Strip&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="8FU71av9sZx5OES5LHOV-146" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Neopixel Strip&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-219.9999999999999" y="4423" width="290.24" height="100" as="geometry" />
         </mxCell>
         <mxCell id="8FU71av9sZx5OES5LHOV-147" value="5VDC" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -907,7 +907,7 @@
         <mxCell id="8FU71av9sZx5OES5LHOV-153" value="3.3V or 5V Logic" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" parent="1" vertex="1">
           <mxGeometry x="-39.999999999999886" y="4493" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="8FU71av9sZx5OES5LHOV-154" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Toggle Switches&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="8FU71av9sZx5OES5LHOV-154" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Toggle Switches&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-256.9999999999999" y="4203.62" width="290.24" height="120" as="geometry" />
         </mxCell>
         <mxCell id="8FU71av9sZx5OES5LHOV-155" value="GND" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -1291,7 +1291,7 @@
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-252" value="Dedicated traces for 5V distro" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" parent="1" vertex="1">
           <mxGeometry x="-709.9999999999999" y="4433" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="HGWdBmw_bZSqKYTKwmgM-253" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;FWD LED Relay&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="HGWdBmw_bZSqKYTKwmgM-253" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;FWD LED Relay&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-1242.2400000000002" y="4504.37" width="290.24" height="100" as="geometry" />
         </mxCell>
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-254" value="NO" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -1341,7 +1341,7 @@
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-266" value="3" style="rounded=0;whiteSpace=wrap;html=1;arcSize=27;glass=0;" parent="1" vertex="1">
           <mxGeometry x="-951.9999999999999" y="4564.37" width="30" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="HGWdBmw_bZSqKYTKwmgM-267" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;AFT LED Relay&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="HGWdBmw_bZSqKYTKwmgM-267" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;AFT LED Relay&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-1242.2400000000002" y="4667.37" width="290.24" height="100" as="geometry" />
         </mxCell>
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-268" value="NO" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -1439,7 +1439,7 @@
         <mxCell id="8FU71av9sZx5OES5LHOV-184" value="2x SCL/SDA&lt;br&gt;25x GPIO&lt;br&gt;(4x PWM)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=3;fontSize=18;" parent="1" vertex="1">
           <mxGeometry x="-562.5099999999999" y="4655.32" width="152" height="116.25" as="geometry" />
         </mxCell>
-        <mxCell id="HGWdBmw_bZSqKYTKwmgM-317" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;MPU9250 IMU&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="HGWdBmw_bZSqKYTKwmgM-317" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;MPU9250 IMU&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-257.5100000000001" y="5008.13" width="206.88" height="160" as="geometry" />
         </mxCell>
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-318" value="VCC (3V or 5V)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -1469,7 +1469,7 @@
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-326" value="3.3V or 5V Logic" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" parent="1" vertex="1">
           <mxGeometry x="-162.3900000000002" y="5143.13" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="HGWdBmw_bZSqKYTKwmgM-327" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Neopixel Strip&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="HGWdBmw_bZSqKYTKwmgM-327" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Neopixel Strip&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-215.2499999999999" y="5297.62" width="290.24" height="100" as="geometry" />
         </mxCell>
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-328" value="5VDC" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -1644,7 +1644,7 @@
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-474" value="Dedicated traces for 5V distro" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" parent="1" vertex="1">
           <mxGeometry x="-690.8399999999996" y="5049.7" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="HGWdBmw_bZSqKYTKwmgM-475" value="Turret Trigger Relay" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="HGWdBmw_bZSqKYTKwmgM-475" value="Turret Trigger Relay" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-1239.1699999999998" y="6058.75" width="301.24" height="100" as="geometry" />
         </mxCell>
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-476" value="NO" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -1694,7 +1694,7 @@
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-488" value="3" style="rounded=0;whiteSpace=wrap;html=1;arcSize=27;glass=0;" parent="1" vertex="1">
           <mxGeometry x="-937.64" y="6135" width="30" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="HGWdBmw_bZSqKYTKwmgM-489" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Turret LED Relay&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="HGWdBmw_bZSqKYTKwmgM-489" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;Turret LED Relay&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-1237.5800000000004" y="5392.5" width="290.24" height="100" as="geometry" />
         </mxCell>
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-490" value="NO" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
