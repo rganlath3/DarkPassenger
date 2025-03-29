@@ -5,39 +5,92 @@
 [![Status: In Development](https://img.shields.io/badge/Status-In%20Development-yellow.svg)]()
 
 
+A modular payload for use as a ROS learning platform. Each floor of the chassis delivers different capabilities. The initial design is mounted on a roomba.
 
-A roomba chassis modded into a ROS learning platform with modular capability tower design. 
-
-
+![Dark Passenger Iso View](/Visual_Documentation/ISOView03192025.png)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-TBD
-
-
+The idea was to reuse a cheap roomba to create a platform for learning ROS and sensor integration. The end goal is to have a project incorporate aluminum extrusion, working with acrylic, ESP32-S3, stepper motors, thermal camera, depth camera, LIDAR, slip rings, DC motor controllers, encoders, 3D printing, INS sensor fusion, relays, GPS, and power distribution.  
 
 ### Design Tools & Requirements
 
 #### Software Requirements
-- TBD
-
+- VS Code (Programming IDE)
+- Autodesk Fusion360 (Free CAD Software)
+- KiCAD 9.0 (Open Source PCB Design Software)
+- Ultimaker Cura (Free 3D Slicing Software)
 
 #### Hardware Requirements
-- TBD
-
-
+- Raspberry Pi 5
+- 32GB+ SD Card
+- 2x Dewalt 20VDC 2Ah Battery
 
 ## Hardware Development
+
+### Bill of Materials
+Coming Soon
 
 ### Hardware Used
 TBD
 
 
 ### Electrical Interconnect Diagram
-TBD
+[Electrical Interconnect Diagram](/Hardware_Development/DrawIO/DarkPassengerElectricalInterconnect.pdf)
 
 ### PCBs
-TBD
+
+#### Power Distribution PCB
+<img src="/Visual_Documentation/PowerDistro_ISOView.png" width="800">
+
+
+This PCB is used to stack 2x DC-DC converters below and a voltage cutoff board on the top. This PCB distributes power from battery inputs to get converted to 12V and 5V. It interfaces with the following components:
+
+- 2x 2Ah Dewalt Batteries
+- Voltage Cutoff CCA (TBD)
+- 20VDC to 5VDC Converter (TBD)
+- 20VDC to 12VDC Converter (TBD)
+- 3x Powered USB Ports
+- Spare I2C
+
+#### Base MCU PCB
+<img src="/Visual_Documentation/Base_MCU_ISOView.png" width="800">
+
+
+This PCB is used to interface an ESP32-S3 with the following components:
+
+- GPS Module (GY-NEO6mV2)
+- MPU9250 IMU
+- Spare I2C
+- 2x Toggle Switches
+- Neopixel Strip
+- 2x Spare GPIOs
+- External Reset
+- 2x Channel Motor Driver (MDD10A)
+- Battery Scaled Input
+- Motor Encoders
+- FWD LED Relay
+- AFT LED Relay
+- 5V Distribution
+
+#### Turret MCU PCB
+<img src="/Visual_Documentation/Turret_MCU_ISOView.png" width="800">
+
+This PCB is used to interface an ESP32-S3 with the following components:
+
+- GPS Module (GY-NEO6mV2)
+- MPU9250 IMU
+- Spare I2C
+- Neopixel Strip
+- External Reset
+- 2x Channel Motor Driver (MDD3A)
+- 2x NEMA17 Stepper Motors
+- 2x TMC2209 Stepper Driver
+- Laser Relay
+- Turret LED Relay
+- Cooling Fan Relay
+- 5V Distribution
+- 12V Distribution
 
 ### Wiring
 TBD
