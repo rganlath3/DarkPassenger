@@ -1,8 +1,8 @@
 /*
   By Ranil Ganlath
   This is for testing relays with the ESP32 3V logic.
-  ESP32 15  - Relay Headlight Control Output
-  ESP32 18  - Relay Brake Light Control Output
+  ESP32 35  - Relay FWD Headlight Control Output
+  ESP32 36  - Relay AFT Brake Light Control Output
   
   IDE Configuration:
   Arduino Board: ESP32S3 Dev Module
@@ -25,26 +25,28 @@
   Zigbee Mode: Disabled
 */
 
+#define FWD_RELAY_CTRL 35
+#define AFT_RELAY_CTRL 36
 
 void setup() {
-  pinMode(15,OUTPUT);
-  pinMode(18,OUTPUT);
+  pinMode(FWD_RELAY_CTRL,OUTPUT);
+  pinMode(AFT_RELAY_CTRL,OUTPUT);
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(15,HIGH);
+  digitalWrite(FWD_RELAY_CTRL,HIGH);
   delay(5000);
-  digitalWrite(15,LOW);
+  digitalWrite(FWD_RELAY_CTRL,LOW);
   delay(5000);
-  digitalWrite(18,HIGH);
+  digitalWrite(AFT_RELAY_CTRL,HIGH);
   delay(5000);
-  digitalWrite(18,LOW);
+  digitalWrite(AFT_RELAY_CTRL,LOW);
   delay(5000);
-  digitalWrite(15,HIGH);
-  digitalWrite(18,HIGH);
+  digitalWrite(FWD_RELAY_CTRL,HIGH);
+  digitalWrite(AFT_RELAY_CTRL,HIGH);
   delay(5000);
-  digitalWrite(15,LOW);
-  digitalWrite(18,LOW);
+  digitalWrite(FWD_RELAY_CTRL,LOW);
+  digitalWrite(AFT_RELAY_CTRL,LOW);
   delay(5000);
 }

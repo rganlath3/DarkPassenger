@@ -23,8 +23,10 @@
   JTAG Adapter: Disabled
   Zigbee Mode: Disabled
 */
+//Onboard NEOPIXEL is wired to pin 48
+
 #define RGB_BRIGHTNESS 64 // Change white brightness (max 255)
-#define RGBPIN 37
+#define RGBPIN 48 //pin 42 is neopixel breakout pin.
 
 void setup() {
   pinMode(RGBPIN,OUTPUT);

@@ -2,6 +2,8 @@
   By Ranil Ganlath
   This is for testing an MPU9250. With the ESP32, any GPIO pin can be configured as SDA and SCL pins for I2C.
   Board: ESP32-S3-WROOM-1
+  ESP32 8  - SDA
+  ESP32 9  - SCL
   
   IDE Configuration:
   Arduino Board: ESP32S3 Dev Module
@@ -27,8 +29,8 @@
 #include <MPU9250_asukiaaa.h>
 
 #ifdef _ESP32_HAL_I2C_H_
-#define SDA_PIN 21
-#define SCL_PIN 18
+#define SDA_PIN 8
+#define SCL_PIN 9
 #endif
 
 MPU9250_asukiaaa mySensor;

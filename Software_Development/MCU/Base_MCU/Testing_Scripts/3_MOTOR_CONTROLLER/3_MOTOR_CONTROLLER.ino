@@ -2,12 +2,12 @@
   By Ranil Ganlath
   This is for testing the Cytron MDD10A with 2x motors. With the ESP32, any GPIO pin can be configured as the DIR and PWM pins.
   Board: ESP32-S3-WROOM-1
-  ESP32 37  - Motor Driver PWM 1 Input
-  ESP32 38  - Motor Driver DIR 1 Input
-  ESP32 35  - Motor Driver PWM 2 Input
-  ESP32 36  - Motor Driver DIR 2 Input
   ESP32 GND - Motor Driver GND
-  
+  ESP32 11  - Motor Driver PWM 1 Input
+  ESP32 13  - Motor Driver DIR 1 Input
+  ESP32 21  - Motor Driver PWM 2 Input
+  ESP32 19  - Motor Driver DIR 2 Input
+ 
   IDE Configuration:
   Arduino Board: ESP32S3 Dev Module
   Upload Speed: 921600
@@ -32,8 +32,8 @@
  #include "CytronMotorDriver.h"
 
 // Configure the motor driver.
-CytronMD motor1(PWM_DIR, 37, 38);  // PWM 1 = Pin 37, DIR 1 = Pin 38.
-CytronMD motor2(PWM_DIR, 35, 36); // PWM 2 = Pin 35, DIR 2 = Pin 36.
+CytronMD motor1(PWM_DIR, 11, 13);  // PWM 1 = Pin 11, DIR 1 = Pin 13.
+CytronMD motor2(PWM_DIR, 21, 19); // PWM 2 = Pin 21, DIR 2 = Pin 19.
 
 void setup() {
   
@@ -44,7 +44,7 @@ void setup() {
 void loop() {
   motor1.setSpeed(64);   // Motor 1 runs forward at 25% speed.
   motor2.setSpeed(-64);  // Motor 2 runs backward at 25% speed.
-  delay(2000);
+  delay(4000);
   
   motor1.setSpeed(0);     // Motor 1 stops.
   motor2.setSpeed(0);     // Motor 2 stops.
@@ -52,7 +52,7 @@ void loop() {
 
   motor1.setSpeed(-64);  // Motor 1 runs backward at 25% speed.
   motor2.setSpeed(64);   // Motor 2 runs forward at 25% speed.
-  delay(2000);
+  delay(4000);
   
   motor1.setSpeed(0);     // Motor 1 stops.
   motor2.setSpeed(0);     // Motor 2 stops.
@@ -60,7 +60,7 @@ void loop() {
 
   motor1.setSpeed(64);  // Motor 1 runs backward at 25% speed.
   motor2.setSpeed(64);   // Motor 2 runs forward at 25% speed.
-  delay(1000);
+  delay(4000);
 
   motor1.setSpeed(0);     // Motor 1 stops.
   motor2.setSpeed(0);     // Motor 2 stops.
@@ -68,9 +68,9 @@ void loop() {
 
   motor1.setSpeed(-64);  // Motor 1 runs backward at 25% speed.
   motor2.setSpeed(-64);   // Motor 2 runs forward at 25% speed.
-  delay(1000);
+  delay(4000);
 
   motor1.setSpeed(0);     // Motor 1 stops.
   motor2.setSpeed(0);     // Motor 2 stops.
-  delay(2000);
+  delay(4000);
 }

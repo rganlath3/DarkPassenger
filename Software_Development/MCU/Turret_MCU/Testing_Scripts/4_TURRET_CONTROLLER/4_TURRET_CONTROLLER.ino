@@ -2,10 +2,8 @@
   By Ranil Ganlath
   This is for testing the Cytron MDD3A motor controller to drive the turret gearbox motor using an ESP32.
   Board: ESP32-S3-WROOM-1
-  ESP32 37  - Motor Driver PWM 1A Input
-  ESP32 38  - Motor Driver PWM 1B Input
-  ESP32 35  - Motor Driver PWM 2A Input
-  ESP32 36  - Motor Driver PWM 2B Input
+  ESP32 19  - Motor Driver PWM M1A Input
+  ESP32 20  - Motor Driver PWM M1B Input
   ESP32 GND - Motor Driver GND
   IDE Configuration:
   Arduino Board: ESP32S3 Dev Module
@@ -32,7 +30,7 @@
  #include "CytronMotorDriver.h"
 
 // Configure the motor driver.
-CytronMD motor1(PWM_PWM, 37, 38);   // PWM 1A = Pin 37, PWM 1B = Pin 38.
+CytronMD motor1(PWM_PWM, 19, 20);   // PWM 1A = Pin 19, PWM 1B = Pin 20.
 
 
 void setup() {

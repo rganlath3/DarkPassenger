@@ -2,8 +2,8 @@
   By Ranil Ganlath
   This is for testing a GY-NEO6MV2 GPS Module using an ESP32.
   Board: ESP32-S3-WROOM-1
-  ESP32 17  - GPS TX2 Output (routes to RX)
-  ESP32 16  - GPS RX2 Input (routes to TX)
+  ESP32 38  - GPS TX2 Output (routes to RX)
+  ESP32 37  - GPS RX2 Input (routes to TX)
   ESP32 GND - Motor Driver GND
   IDE Configuration:
   Arduino Board: ESP32S3 Dev Module
@@ -34,8 +34,8 @@
 *********/
 
  // Define the RX and TX pins for Serial 2
-#define RXD2 16
-#define TXD2 17
+#define RXD2 37
+#define TXD2 38 //might need to swap
 
 #define GPS_BAUD 9600
 

@@ -4440,7 +4440,7 @@
 	)
 	(rectangle
 		(start 175.26 26.67)
-		(end 200.66 54.61)
+		(end 208.28 54.61)
 		(stroke
 			(width 0)
 			(type default)
@@ -4463,8 +4463,8 @@
 		(uuid 26a86453-9259-4eb4-a652-5efc28aaec26)
 	)
 	(rectangle
-		(start 204.47 26.67)
-		(end 246.38 54.61)
+		(start 209.55 26.67)
+		(end 251.46 54.61)
 		(stroke
 			(width 0)
 			(type default)
@@ -4574,7 +4574,7 @@
 	)
 	(text "Misc Mounting Holes"
 		(exclude_from_sim no)
-		(at 204.978 53.848 0)
+		(at 210.058 53.848 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7513,7 +7513,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "07ae8fb0-e08b-4559-a0c2-85a5921e2d98")
 		(property "Reference" "R1"
 			(at 182.88 33.0199 0)
@@ -7524,7 +7523,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "300ohm"
 			(at 182.88 35.5599 0)
 			(effects
 				(font
@@ -7901,7 +7900,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 191.77 34.29 0)
+		(at 196.85 34.29 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7910,7 +7909,7 @@
 		(fields_autoplaced yes)
 		(uuid "11a796b1-6bea-4683-a8d0-102063796487")
 		(property "Reference" "R2"
-			(at 194.31 33.0199 0)
+			(at 199.39 33.0199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7918,8 +7917,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
-			(at 194.31 35.5599 0)
+		(property "Value" "130ohm"
+			(at 199.39 35.5599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7928,7 +7927,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 189.992 34.29 90)
+			(at 195.072 34.29 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7937,7 +7936,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 191.77 34.29 0)
+			(at 196.85 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7946,7 +7945,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 191.77 34.29 0)
+			(at 196.85 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9191,7 +9190,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 191.77 45.72 0)
+		(at 196.85 45.72 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9199,7 +9198,7 @@
 		(dnp no)
 		(uuid "5e2fb992-de62-428a-a584-46440b0f6398")
 		(property "Reference" "#PWR028"
-			(at 191.77 52.07 0)
+			(at 196.85 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9208,7 +9207,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 191.8843 50.0444 0)
+			(at 196.9643 50.0444 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9216,7 +9215,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 191.77 45.72 0)
+			(at 196.85 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9224,7 +9223,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 191.77 45.72 0)
+			(at 196.85 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9232,7 +9231,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 191.77 45.72 0)
+			(at 196.85 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9253,7 +9252,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 208.28 43.18 0)
+		(at 213.36 43.18 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9261,7 +9260,7 @@
 		(dnp no)
 		(uuid "60a2d2a9-4baa-4bd0-a38e-fbf588f1c885")
 		(property "Reference" "H2"
-			(at 210.82 42.545 0)
+			(at 215.9 42.545 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9270,7 +9269,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 210.82 45.085 0)
+			(at 215.9 45.085 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9279,7 +9278,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3mm"
-			(at 208.28 43.18 0)
+			(at 213.36 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9288,7 +9287,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 208.28 43.18 0)
+			(at 213.36 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9297,7 +9296,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 208.28 43.18 0)
+			(at 213.36 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9315,7 +9314,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 208.28 31.75 0)
+		(at 213.36 31.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9323,7 +9322,7 @@
 		(dnp no)
 		(uuid "63cf50aa-4386-4ed7-85fb-4f3dffc265e8")
 		(property "Reference" "H1"
-			(at 210.82 31.115 0)
+			(at 215.9 31.115 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9332,7 +9331,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 210.82 33.655 0)
+			(at 215.9 33.655 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9341,7 +9340,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3mm"
-			(at 208.28 31.75 0)
+			(at 213.36 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9350,7 +9349,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 208.28 31.75 0)
+			(at 213.36 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9359,7 +9358,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 208.28 31.75 0)
+			(at 213.36 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9510,7 +9509,7 @@
 	(symbol
 		(lib_name "LED_1")
 		(lib_id "Device:LED")
-		(at 191.77 41.91 90)
+		(at 196.85 41.91 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9519,7 +9518,7 @@
 		(fields_autoplaced yes)
 		(uuid "73b7218e-e58b-495b-bc6c-05509e6f4136")
 		(property "Reference" "D2"
-			(at 195.58 42.2274 90)
+			(at 200.66 42.2274 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9528,7 +9527,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 195.58 44.7674 90)
+			(at 200.66 44.7674 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9537,7 +9536,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
-			(at 191.77 41.91 0)
+			(at 196.85 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9546,7 +9545,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 191.77 41.91 0)
+			(at 196.85 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9555,7 +9554,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 191.77 41.91 0)
+			(at 196.85 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9564,7 +9563,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 191.77 41.91 0)
+			(at 196.85 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9999,7 +9998,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 191.77 30.48 0)
+		(at 196.85 30.48 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10007,7 +10006,7 @@
 		(dnp no)
 		(uuid "86f40518-af4d-435a-9bf5-7ef5e6a724a2")
 		(property "Reference" "#PWR041"
-			(at 191.77 34.29 0)
+			(at 196.85 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10016,7 +10015,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 187.706 29.718 0)
+			(at 192.786 29.718 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10024,7 +10023,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 191.77 30.48 0)
+			(at 196.85 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10033,7 +10032,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 191.77 30.48 0)
+			(at 196.85 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10042,7 +10041,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 191.77 30.48 0)
+			(at 196.85 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11921,7 +11920,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 229.87 43.18 0)
+		(at 234.95 43.18 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11929,7 +11928,7 @@
 		(dnp no)
 		(uuid "e79ccab7-3f8f-4384-9955-aad811a4034a")
 		(property "Reference" "H4"
-			(at 232.41 42.545 0)
+			(at 237.49 42.545 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11938,7 +11937,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 232.41 45.085 0)
+			(at 237.49 45.085 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11947,7 +11946,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3mm"
-			(at 229.87 43.18 0)
+			(at 234.95 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11956,7 +11955,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 229.87 43.18 0)
+			(at 234.95 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11965,7 +11964,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 229.87 43.18 0)
+			(at 234.95 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12200,7 +12199,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 229.87 31.75 0)
+		(at 234.95 31.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12209,7 +12208,7 @@
 		(fields_autoplaced yes)
 		(uuid "fea0078f-b32b-49dc-8745-8556f00c4aba")
 		(property "Reference" "H3"
-			(at 232.41 31.115 0)
+			(at 237.49 31.115 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12218,7 +12217,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 232.41 33.655 0)
+			(at 237.49 33.655 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12227,7 +12226,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3mm"
-			(at 229.87 31.75 0)
+			(at 234.95 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12236,7 +12235,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 229.87 31.75 0)
+			(at 234.95 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12245,7 +12244,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 229.87 31.75 0)
+			(at 234.95 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
