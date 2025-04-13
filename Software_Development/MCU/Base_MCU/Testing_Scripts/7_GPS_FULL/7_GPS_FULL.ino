@@ -5,7 +5,7 @@
    It requires the use of SoftwareSerial, and assumes that you have a
    4800-baud serial GPS device hooked up on pins 4(rx) and 3(tx).
 */
-static const int RXPin = 37, TXPin = 38;
+static const int RXPin = 38, TXPin = 37;
 static const uint32_t GPSBaud = 9600;
 HardwareSerial ss(2);
 // The TinyGPSPlus object

@@ -4,7 +4,6 @@
   Board: ESP32-S3-WROOM-1
   ESP32 38  - GPS TX2 Output (routes to RX)
   ESP32 37  - GPS RX2 Input (routes to TX)
-  ESP32 GND - Motor Driver GND
   IDE Configuration:
   Arduino Board: ESP32S3 Dev Module
   Upload Speed: 921600
@@ -34,8 +33,8 @@
 *********/
 
  // Define the RX and TX pins for Serial 2
-#define RXD2 37
-#define TXD2 38 //might need to swap
+#define RXD2 38
+#define TXD2 37
 
 #define GPS_BAUD 9600
 
