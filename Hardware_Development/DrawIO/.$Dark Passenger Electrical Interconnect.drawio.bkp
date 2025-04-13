@@ -1,6 +1,6 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" modified="2025-04-04T22:27:48.957Z" etag="ewZLEOooVNe0jf6hs7m7" version="21.2.8" type="device">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" modified="2025-04-10T17:45:10.847Z" etag="5NXBxQMywKZrdvnaPHbd" version="21.2.8" type="device">
   <diagram name="Page-1" id="o3p5K8Tt1Z_R2w1E8vlr">
-    <mxGraphModel dx="10787" dy="-1980" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="9872" dy="-2508" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -983,7 +983,7 @@
         <mxCell id="8FU71av9sZx5OES5LHOV-161" value="3.3V or 5V Logic" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" parent="1" vertex="1">
           <mxGeometry x="-68.56999999999988" y="4337.030000000001" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="HGWdBmw_bZSqKYTKwmgM-11" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;MCU Motor Shield&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="HGWdBmw_bZSqKYTKwmgM-11" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;MCU Motor Base Shield&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="-767.12" y="3680" width="370" height="1130" as="geometry" />
         </mxCell>
         <mxCell id="HGWdBmw_bZSqKYTKwmgM-12" value="3.3VDC" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -2123,7 +2123,7 @@
         <mxCell id="U6dWhkP1gEBETSOiGGos-116" value="Built In" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-4629.76" y="4967.1900000000005" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="U6dWhkP1gEBETSOiGGos-117" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;Motor MCU&lt;br&gt;Arduino Mega / Due&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+        <mxCell id="U6dWhkP1gEBETSOiGGos-117" value="&lt;span style=&quot;border-color: var(--border-color); font-size: 22px;&quot;&gt;Motor Base MCU&lt;br&gt;ESP32&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="-4920" y="5078.63" width="290.24" height="110" as="geometry" />
         </mxCell>
         <mxCell id="U6dWhkP1gEBETSOiGGos-118" value="Micro USB" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
