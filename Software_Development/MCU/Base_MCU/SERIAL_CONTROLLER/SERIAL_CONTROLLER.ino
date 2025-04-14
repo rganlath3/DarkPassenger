@@ -95,9 +95,13 @@ const unsigned long UPDATE_INTERVAL = 100; // Update every 100ms
 
 char command = 'S';         // Default to Stop
 
-// Distance tracking
+// Distance tracking - moved to global scope
 float leftDistanceMM = 0.0;
 float rightDistanceMM = 0.0;
+float avgDistanceMM = 0.0;
+float leftDistanceInches = 0.0;
+float rightDistanceInches = 0.0;
+float avgDistanceInches = 0.0;
 
 // Function to calculate distance from encoder counts
 float calculateDistance(unsigned long counts) {
@@ -234,7 +238,34 @@ void loop() {
         break;
       case 'E':  // Report Encoder Distance
         Serial.println("Reporting Distance Travelled");
-        //Do stuff here
+        // Print sensor and encoder data
+        Serial.println("-------- Sensor Data --------");
+        Serial.println("Left Wheel Switch: " + String(digitalRead(LEFT_WHEEL_SW_PIN)) + 
+                      ", Right Wheel Switch: " + String(digitalRead(RIGHT_WHEEL_SW_PIN)));
+        Serial.println("Left Encoder State: " + String(currentLeftState) + 
+                      ", Right Encoder State: " + String(currentRightState));
+        
+        Serial.println("-------- Distance Data --------");
+        Serial.println("Left Encoder Count: " + String(leftEncoderCount) + 
+                      ", Right Encoder Count: " + String(rightEncoderCount));
+                      
+        // Print distances in mm
+        Serial.println("Left Distance: " + String(leftDistanceMM, 1) + " mm (" + 
+                      String(leftDistanceMM/1000, 2) + " m)");
+        Serial.println("Right Distance: " + String(rightDistanceMM, 1) + " mm (" + 
+                      String(rightDistanceMM/1000, 2) + " m)");
+        Serial.println("Average Distance: " + String(avgDistanceMM, 1) + " mm (" + 
+                      String(avgDistanceMM/1000, 2) + " m)");
+                      
+        // Print distances in inches
+        Serial.println("Left Distance: " + String(leftDistanceInches, 1) + " in (" + 
+                      String(leftDistanceInches/12, 2) + " ft)");
+        Serial.println("Right Distance: " + String(rightDistanceInches, 1) + " in (" + 
+                      String(rightDistanceInches/12, 2) + " ft)");
+        Serial.println("Average Distance: " + String(avgDistanceInches, 1) + " in (" + 
+                      String(avgDistanceInches/12, 2) + " ft)");
+                      
+        Serial.println();
         break;
       case 'T':  // Toggle Switch
         Serial.println("Toggle Switch Read");
@@ -325,7 +356,8 @@ void loop() {
         break;
     }
   }
-  // Update and display info periodically
+  
+  // Update and calculate distances periodically but don't print
   unsigned long currentTime = millis();
   if (currentTime - lastUpdateTime >= UPDATE_INTERVAL) {
     // Calculate distances
@@ -333,41 +365,14 @@ void loop() {
     rightDistanceMM = calculateDistance(rightEncoderCount);
     
     // Calculate average distance
-    float avgDistanceMM = (leftDistanceMM + rightDistanceMM) / 2;
+    avgDistanceMM = (leftDistanceMM + rightDistanceMM) / 2;
     
     // Convert to inches
-    float leftDistanceInches = leftDistanceMM * MM_TO_INCHES;
-    float rightDistanceInches = rightDistanceMM * MM_TO_INCHES;
-    float avgDistanceInches = avgDistanceMM * MM_TO_INCHES;
-    // Print sensor and encoder data
-    Serial.println("-------- Sensor Data --------");
-    Serial.println("Left Wheel Switch: " + String(digitalRead(LEFT_WHEEL_SW_PIN)) + 
-                  ", Right Wheel Switch: " + String(digitalRead(RIGHT_WHEEL_SW_PIN)));
-    Serial.println("Left Encoder State: " + String(currentLeftState) + 
-                  ", Right Encoder State: " + String(currentRightState));
+    leftDistanceInches = leftDistanceMM * MM_TO_INCHES;
+    rightDistanceInches = rightDistanceMM * MM_TO_INCHES;
+    avgDistanceInches = avgDistanceMM * MM_TO_INCHES;
     
-    Serial.println("-------- Distance Data --------");
-    Serial.println("Left Encoder Count: " + String(leftEncoderCount) + 
-                  ", Right Encoder Count: " + String(rightEncoderCount));
-                  
-    // Print distances in mm
-    Serial.println("Left Distance: " + String(leftDistanceMM, 1) + " mm (" + 
-                  String(leftDistanceMM/1000, 2) + " m)");
-    Serial.println("Right Distance: " + String(rightDistanceMM, 1) + " mm (" + 
-                  String(rightDistanceMM/1000, 2) + " m)");
-    Serial.println("Average Distance: " + String(avgDistanceMM, 1) + " mm (" + 
-                  String(avgDistanceMM/1000, 2) + " m)");
-                  
-    // Print distances in inches
-    Serial.println("Left Distance: " + String(leftDistanceInches, 1) + " in (" + 
-                  String(leftDistanceInches/12, 2) + " ft)");
-    Serial.println("Right Distance: " + String(rightDistanceInches, 1) + " in (" + 
-                  String(rightDistanceInches/12, 2) + " ft)");
-    Serial.println("Average Distance: " + String(avgDistanceInches, 1) + " in (" + 
-                  String(avgDistanceInches/12, 2) + " ft)");
-                  
-    Serial.println();
-
+    // Update the timing
     lastUpdateTime = currentTime;
   }
 }
