@@ -166,7 +166,7 @@
         </collision>
         <xacro:inertial_sphere mass="0.1" radius="${caster_wheel_radius}">
             <origin xyz="0 0 0" rpy= "0 0 0"/>
-        </xacro:inertial_cylinder>
+        </xacro:inertial_sphere>
     </link>
 
  <!-- Payload Chassis Link -->
