@@ -17,7 +17,57 @@ Verify the environment is configured properly.
 
 You should get ROS_VERSION=2, ROS_PYTHON_VERSION=3, and ROS_DISTRO=jazzy
 
+Navigate to the workspace and run this command to find the packages
+```source install/setup.bash```
+
+#### Install Gazebo Harmonic Simulator
+
+```sudo apt install ros-jazzy-ros2-control```
+```sudo apt install ros-jazzy-ros2-controllers```
+```sudo apt-get install ros-${ROS_DISTRO}-ros-gz```
+```sudo apt install ros-jazzy-gz-ros2-control```
+```sudo apt install ros-jazzy-joy*```
+```sudo apt install ros-jazzy-joint-state-publisher```
+
+Test your install
+```ros2 launch ros_gz_sim gz_sim.launch.py gz_args:=empty.sdf```
+
+Gazebo Harmonic differs from the "Classic" Gazebo meaning that there's a few changes to make to packages that are used to interfacing with classic gazebo.
+1. Modify package.xml and CMakeLists.txt files replace "gazebo, "gazebo_ros_pkgs", etc with packages from "ros_gz"
+2. Edit launch files that start Gazebo
+3. Update the world SDFormat File
+4. Edit launch files that spawn models.
+5. Edit modelSDFormat files.
+6. Bridge ROS topics.
 
 #### Build your package
 Navigate to the workspace. Ex. "github/DarkPassenger/ROS2/dp_ws"
 ```colcon build --symlink-install```
+
+#### Useful Commands (to organize later)
+To launch the main launch script for use with rviz.
+```ros2 launch dexter rsp.launch.py ```
+
+To launch rviz2 with configuration files
+```rviz2 -d src/dexter/config/view_bot.rviz```
+
+To launch the main launch script for use with gazebo.
+```ros2 launch dexter rsp.launch.py use_sim_time:=true```
+
+
+To control wheels, you need to be running joint state publisher.
+```ros2 run joint_state_publisher_gui joint_state_publisher_gui```
+
+
+
+#### Testing Importing the robot into Gazebo.
+Create an empty world gazebo sim
+```ros2 launch ros_gz_sim gz_sim.launch.py gz_args:=empty.sdf```
+
+Create our robot instance
+```ros2 launch dexter rsp.launch.py use_sim_time:=true```
+
+Import our robot into the gazebo world simulation.
+```ros2 run ros_gz_sim create -topic robot_description```
+
+Note: this is a migrated command from the classic gazebo command ```ros2 run gazebo_ros spawn_entity.py -topic robot_description```

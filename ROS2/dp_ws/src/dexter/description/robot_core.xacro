@@ -59,6 +59,8 @@
     <xacro:property name="roomba_wheel_thickness" value="0.015" />
     <xacro:property name="roomba_wheel_weight" value="0.1" />
     <xacro:property name="caster_wheel_radius" value="0.024" />
+    <xacro:property name="caster_wheel_weight" value="0.026" />
+    <xacro:property name="caster_wheel_center_offset" value="0.14" />
     <xacro:property name="roomba_chassis_radius" value="0.17145" />
     <xacro:property name="roomba_chassis_height" value="0.075" />
     <xacro:property name="roomba_chassis_weight" value="1.81437" />
@@ -150,7 +152,7 @@
     <joint name="caster_wheel_joint" type="fixed">
         <parent link="roomba_chassis"/>
         <child link="caster_wheel"/>
-        <origin xyz="0.14 0 ${caster_wheel_radius - roomba_wheel_height_offset}"/>
+        <origin xyz="${caster_wheel_center_offset} 0 ${caster_wheel_radius - roomba_wheel_height_offset}"/>
     </joint>
     <link name="caster_wheel">
         <visual>
@@ -164,7 +166,7 @@
                 <sphere radius="${caster_wheel_radius}"/>
             </geometry>
         </collision>
-        <xacro:inertial_sphere mass="0.1" radius="${caster_wheel_radius}">
+        <xacro:inertial_sphere mass="${caster_wheel_weight}" radius="${caster_wheel_radius}">
             <origin xyz="0 0 0" rpy= "0 0 0"/>
         </xacro:inertial_sphere>
     </link>
