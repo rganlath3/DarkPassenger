@@ -59,7 +59,7 @@ $ colcon build
 if you are consistently running and editing a package, consider using symbolic link to link your nodes to scripts directly instead of building them.
 ```
 $ cd shagohod/ROS2/ros2_ws
-$ colcon build --packaes-select <package_name> --symlink-install
+$ colcon build --packages-select <package_name> --symlink-install
 ```
 
 
