@@ -71,3 +71,7 @@ Import our robot into the gazebo world simulation.
 ```ros2 run ros_gz_sim create -topic robot_description```
 
 Note: this is a migrated command from the classic gazebo command ```ros2 run gazebo_ros spawn_entity.py -topic robot_description```
+
+
+#### Using a launch file to start Gazebo, Robot State Publisher, and Spawn our Robot from URDF file.
+```ros2 launch dexter launch_sim.launch.py```
