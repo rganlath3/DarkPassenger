@@ -20,6 +20,10 @@ You should get ROS_VERSION=2, ROS_PYTHON_VERSION=3, and ROS_DISTRO=jazzy
 Navigate to the workspace and run this command to find the packages
 ```source install/setup.bash```
 
+Add the path of the ROS2 workspace to the startup script as well.
+```source /opt/ros/jazzy/setup.bash```
+```source ~/github/DarkPassenger/ROS2/dp_ws/install/setup.bash```
+
 #### Install Gazebo Harmonic Simulator
 ```sudo apt-get install ros-${ROS_DISTRO}-ros-gz```
 ```sudo apt install ros-jazzy-gz-ros2-control```
