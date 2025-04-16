@@ -21,13 +21,16 @@ Navigate to the workspace and run this command to find the packages
 ```source install/setup.bash```
 
 #### Install Gazebo Harmonic Simulator
-
-```sudo apt install ros-jazzy-ros2-control```
-```sudo apt install ros-jazzy-ros2-controllers```
 ```sudo apt-get install ros-${ROS_DISTRO}-ros-gz```
 ```sudo apt install ros-jazzy-gz-ros2-control```
+```sudo apt install ros-jazzy-twist-mux```
+```sudo apt install ros-jazzy-twist-stamper```
+```sudo apt install ros-jazzy-ros2-control```
+```sudo apt install ros-jazzy-ros2-controllers```
 ```sudo apt install ros-jazzy-joy*```
 ```sudo apt install ros-jazzy-joint-state-publisher```
+
+
 
 Test your install
 ```ros2 launch ros_gz_sim gz_sim.launch.py gz_args:=empty.sdf```
@@ -75,3 +78,9 @@ Note: this is a migrated command from the classic gazebo command ```ros2 run gaz
 
 #### Using a launch file to start Gazebo, Robot State Publisher, and Spawn our Robot from URDF file.
 ```ros2 launch dexter launch_sim.launch.py```
+
+
+
+#### Controlling your Robot's velocity commands via keyboard for Gazebo and RVIZ
+```ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/diff_cont/cmd_vel_unstamped```
+We have to remap the cmd_vel topic due to Jazzy-Harmonic changes.

@@ -100,6 +100,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="roomba_chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
+
 <!-- LEFT WHEEL Link -->
     <joint name="left_wheel_joint" type="continuous">
         <parent link="roomba_chassis"/>
@@ -123,6 +127,9 @@
             <origin xyz="0 0 0" rpy= "0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="left_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
 
 <!-- RIGHT WHEEL Link -->
     <joint name="right_wheel_joint" type="continuous">
@@ -147,6 +154,9 @@
             <origin xyz="0 0 0" rpy= "0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="right_wheel">
+        <material>Gazebo/Red</material>
+    </gazebo>
 
 <!-- CASTER WHEEL Link -->
     <joint name="caster_wheel_joint" type="fixed">
@@ -170,6 +180,11 @@
             <origin xyz="0 0 0" rpy= "0 0 0"/>
         </xacro:inertial_sphere>
     </link>
+    <gazebo reference="caster_wheel">
+        <material>Gazebo/Blue</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
 
  <!-- Payload Chassis Link -->
     <joint name="payload_chassis_joint" type="fixed">
@@ -195,5 +210,8 @@
             <origin xyz ="${payload_chassis_length/2} 0 ${payload_chassis_height/2}" rpy = "0 0 0"/>
         </xacro:inertial_box>
     </link>
+    <gazebo reference="payload_chassis">
+        <material>Gazebo/Green</material>
+    </gazebo>
 
 </robot>

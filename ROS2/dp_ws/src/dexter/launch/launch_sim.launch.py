@@ -26,23 +26,38 @@ def generate_launch_description():
     )
 
     # Include the Gazebo launch file, provided by the gazebo_ros package
+    #                    ("gz_args",[" -v4 -r default.sdf", ])
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')]),
+                launch_arguments=[
+                    ("gz_args",[" -v4 -r ./src/dexter/worlds/obstacles.world.sdf", ])
+                ]
              )
 
     # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
     spawn_entity = Node(package='ros_gz_sim', executable='create',
                         arguments=['-topic', 'robot_description',
-                                   '-entity', 'my_bot'],
+                                   '-name', 'my_bot',
+                                   '-z', '0.1'],
                         output='screen')
 
 
-
+    bridge_params = os.path.join(get_package_share_directory(package_name),'config','gz_bridge.yaml')
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ]
+    )
 
     # Launch them all!
     return LaunchDescription([
         rsp,
-        gazebo,
         spawn_entity,
+        gazebo,
+        ros_gz_bridge
     ])
