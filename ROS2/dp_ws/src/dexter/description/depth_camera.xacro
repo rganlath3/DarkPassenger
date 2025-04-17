@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <joint name="depth_camera_joint" type="fixed">
+        <parent link="payload_chassis"/>
+        <child link="depth_camera_link"/>
+        <origin xyz="0.18 0 0.110" rpy="0 0 0"/>
+    </joint>
+
+    <link name="depth_camera_link">
+        <visual>
+            <geometry>
+                <box size="0.033 0.175 0.03"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <gazebo reference="depth_camera_link">
+        <material>Gazebo/Blue</material>
+        <sensor name="depth_camera" type="rgbd_camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <camera>
+                <camera_info_topic>rgbd_camera/camera_info</camera_info_topic>
+                <horizontal_fov>1.089</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>640</width>
+                    <height>480</height>
+                </image>
+                <clip>
+                    <near>0.05</near>
+                    <far>8.0</far>
+                </clip>
+            </camera>
+            <topic>rgbd_camera</topic>
+            <gz_frame_id>depth_camera_link</gz_frame_id>
+        </sensor>
+
+    </gazebo>
+
+</robot>

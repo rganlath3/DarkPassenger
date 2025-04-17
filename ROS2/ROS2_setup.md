@@ -138,3 +138,9 @@ Note: This doesn't seem to be working as the output is not being configured corr
 
 
 #### Depth Camera
+I am using an RGBD camera in Gazebo (URDF plugin) and passing the image and depth_image info using gz_bridge. For the depth point data, I am....
+
+
+
+#### ROS2 Jazzy and Gazebo Harmonic
+In Gazebo Classic, topics were easily shared between Gazebo and ROS2 interface. Now they are separate and we need to use a bridge to link the two topic names together. Often times, the easiest solution to a problem is that a topic is only in one environment and isn't bridged. We can check this by using the topic viewer in Gazebo and comparing it to the ROS2 topic list command output. We define the data we are bridging using the gz_bridge.yaml file and specify it in our launch command. Image topics use their own launch command.

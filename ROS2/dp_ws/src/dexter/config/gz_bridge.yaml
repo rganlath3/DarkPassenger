@@ -20,6 +20,21 @@
    gz_type_name: "gz.msgs.CameraInfo"
    direction: GZ_TO_ROS
 
+ # gz topic published by Sensors plugin (RGB-Depth Camera Info)
+ - ros_topic_name: "rgbd_camera/camera_info"
+   gz_topic_name: "rgbd_camera/camera_info"
+   ros_type_name: "sensor_msgs/msg/CameraInfo"
+   gz_type_name: "gz.msgs.CameraInfo"
+   direction: GZ_TO_ROS
+
+ # gz topic published by Sensors plugin (RGB-Depth Camera Points)
+ - ros_topic_name: "rgbd_camera/points"
+   gz_topic_name: "rgbd_camera/points"
+   ros_type_name: "sensor_msgs/msg/PointCloud2"
+   gz_type_name: "gz.msgs.PointCloudPacked"
+   direction: GZ_TO_ROS
+
+
 # gz topic published by DiffDrive plugin
  - ros_topic_name: "odom"
    gz_topic_name: "odom"
