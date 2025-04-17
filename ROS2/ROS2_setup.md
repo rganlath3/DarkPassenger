@@ -86,5 +86,36 @@ Note: this is a migrated command from the classic gazebo command ```ros2 run gaz
 
 
 #### Controlling your Robot's velocity commands via keyboard for Gazebo and RVIZ
-```ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/diff_cont/cmd_vel_unstamped```
+Using 3x terminals:
+Term1: ```ros2 launch dexter launch_sim.launch.py```
+Term2: ```ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/diff_cont/cmd_vel_unstamped```
 We have to remap the cmd_vel topic due to Jazzy-Harmonic changes.
+Term3: ```rviz2```
+
+
+#### Connecting to the RPLidar (Physical Hardware)
+Install the RPLIDAR ROS Package
+sudo apt install ros-jazzy-rplidar-ros
+
+Add USB Reading Permissions:
+sudo usermod -a -G dialout $USER
+
+Check List of USB Devices
+ls -1 /dev |grep ttyUSB
+
+Run the Lidar Node:
+ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/ttyUSB0 -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard
+
+To Stop The motor:
+ros2 service call /stop_motor std_srvs/srv/Empty {}
+
+To Start the motor:
+ros2 service call /start_motor std_srvs/srv/Empty {}
+
+
+Here is a good launch file test script:
+ros2 launch rplidar_ros view_rplidar.launch.py 
+
+
+
+ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0 -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard
