@@ -95,27 +95,46 @@ Term3: ```rviz2```
 
 #### Connecting to the RPLidar (Physical Hardware)
 Install the RPLIDAR ROS Package
-sudo apt install ros-jazzy-rplidar-ros
+```sudo apt install ros-jazzy-rplidar-ros```
 
 Add USB Reading Permissions:
-sudo usermod -a -G dialout $USER
+```sudo usermod -a -G dialout $USER```
 
 Check List of USB Devices
-ls -1 /dev |grep ttyUSB
+```ls -1 /dev |grep ttyUSB```
 
 Run the Lidar Node:
-ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/ttyUSB0 -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard
+```ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/ttyUSB0 -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard```
 
 To Stop The motor:
-ros2 service call /stop_motor std_srvs/srv/Empty {}
+```ros2 service call /stop_motor std_srvs/srv/Empty {}```
 
 To Start the motor:
-ros2 service call /start_motor std_srvs/srv/Empty {}
+```ros2 service call /start_motor std_srvs/srv/Empty {}```
 
 
 Here is a good launch file test script:
-ros2 launch rplidar_ros view_rplidar.launch.py 
+```ros2 launch rplidar_ros view_rplidar.launch.py```
+
+If a closed script is still hogging the USB port, you can run this command:
+```killall rplidar_composition```
 
 
+#### Camera (Software)
+The camera is outputting it's uncompressed image out to the topic: /camera/image_raw
 
-ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0 -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard
+In order to compress the images (eats up processing power but greatly reduces bandwidth for video stream), we need to install a ROS transport plugin.
+```sudo apt install ros-jazzy-image-transport-plugins```
+```sudo apt install ros-jazzy-rqt-image-view```
+
+To visually see ros image topics, use ```ros2 run rqt_image_view  rqt_image_view```
+
+To convert between compressed and uncompressed feeds, we can use:
+ros2 run image_transport list_transports
+
+Ex. Compressed to Raw
+ros2 run image_transport republish compressed raw --ros-args -r in/compressed:=/camera/image_raw/compressed -r out:=/camera/image_raw/raw/uncompressed
+Note: This doesn't seem to be working as the output is not being configured correctly. I couldnt find any similar errors online.
+
+
+#### Depth Camera
