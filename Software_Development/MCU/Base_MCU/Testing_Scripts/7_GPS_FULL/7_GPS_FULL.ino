@@ -1,159 +1,109 @@
 #include <TinyGPSPlus.h>
 
-/*
-   This sample code demonstrates the normal use of a TinyGPSPlus (TinyGPSPlus) object.
-   It requires the use of SoftwareSerial, and assumes that you have a
-   4800-baud serial GPS device hooked up on pins 4(rx) and 3(tx).
-*/
+// GPS module connection
 static const int RXPin = 38, TXPin = 37;
 static const uint32_t GPSBaud = 9600;
 HardwareSerial ss(2);
+
 // The TinyGPSPlus object
 TinyGPSPlus gps;
 
-// The serial connection to the GPS device
+// MNT timezone offset (UTC-7 for Mountain Standard Time)
+// Change to -6 during Daylight Saving Time
+const int timeZoneOffset = -6;
 
-
-void setup()
-{
+void setup() {
   Serial.begin(115200);
   ss.begin(GPSBaud, SERIAL_8N1, RXPin, TXPin);
-
-  Serial.println(F("FullExample.ino"));
-  Serial.println(F("An extensive example of many interesting TinyGPSPlus features"));
-  Serial.print(F("Testing TinyGPSPlus library v. ")); Serial.println(TinyGPSPlus::libraryVersion());
-  Serial.println(F("by Mikal Hart"));
-  Serial.println();
-  Serial.println(F("Sats HDOP  Latitude   Longitude   Fix  Date       Time     Date Alt    Course Speed Card  Distance Course Card  Chars Sentences Checksum"));
-  Serial.println(F("           (deg)      (deg)       Age                      Age  (m)    --- from GPS ----  ---- to London  ----  RX    RX        Fail"));
-  Serial.println(F("----------------------------------------------------------------------------------------------------------------------------------------"));
-}
-
-void loop()
-{
-  static const double LONDON_LAT = 51.508131, LONDON_LON = -0.128002;
-
-  printInt(gps.satellites.value(), gps.satellites.isValid(), 5);
-  printFloat(gps.hdop.hdop(), gps.hdop.isValid(), 6, 1);
-  printFloat(gps.location.lat(), gps.location.isValid(), 11, 6);
-  printFloat(gps.location.lng(), gps.location.isValid(), 12, 6);
-  printInt(gps.location.age(), gps.location.isValid(), 5);
-  printDateTime(gps.date, gps.time);
-  printFloat(gps.altitude.meters(), gps.altitude.isValid(), 7, 2);
-  printFloat(gps.course.deg(), gps.course.isValid(), 7, 2);
-  printFloat(gps.speed.kmph(), gps.speed.isValid(), 6, 2);
-  printStr(gps.course.isValid() ? TinyGPSPlus::cardinal(gps.course.deg()) : "*** ", 6);
-
-  unsigned long distanceKmToLondon =
-    (unsigned long)TinyGPSPlus::distanceBetween(
-      gps.location.lat(),
-      gps.location.lng(),
-      LONDON_LAT, 
-      LONDON_LON) / 1000;
-  printInt(distanceKmToLondon, gps.location.isValid(), 9);
-
-  double courseToLondon =
-    TinyGPSPlus::courseTo(
-      gps.location.lat(),
-      gps.location.lng(),
-      LONDON_LAT, 
-      LONDON_LON);
-
-  printFloat(courseToLondon, gps.location.isValid(), 7, 2);
-
-  const char *cardinalToLondon = TinyGPSPlus::cardinal(courseToLondon);
-
-  printStr(gps.location.isValid() ? cardinalToLondon : "*** ", 6);
-
-  printInt(gps.charsProcessed(), true, 6);
-  printInt(gps.sentencesWithFix(), true, 10);
-  printInt(gps.failedChecksum(), true, 9);
-  Serial.println();
   
-  smartDelay(1000);
-
-  if (millis() > 5000 && gps.charsProcessed() < 10)
-    Serial.println(F("No GPS data received: check wiring"));
+  Serial.println(F("GPS Data Logger (MNT Time Zone)"));
+  Serial.println(F("Type 'G' to get GPS data (satellites, latitude, longitude, date, time)"));
+  Serial.println(F("-----------------------------------------------------------------"));
 }
 
-// This custom version of delay() ensures that the gps object
-// is being "fed".
-static void smartDelay(unsigned long ms)
-{
-  unsigned long start = millis();
-  do 
-  {
-    while (ss.available())
-      gps.encode(ss.read());
-  } while (millis() - start < ms);
-}
-
-static void printFloat(float val, bool valid, int len, int prec)
-{
-  if (!valid)
-  {
-    while (len-- > 1)
-      Serial.print('*');
-    Serial.print(' ');
+void loop() {
+  // Process GPS data continuously
+  while (ss.available())
+    gps.encode(ss.read());
+  
+  // Check if user typed "G" in Serial Monitor
+  if (Serial.available() > 0) {
+    char incomingByte = Serial.read();
+    
+    // Print GPS data when 'G' is received
+    if (incomingByte == 'G' || incomingByte == 'g') {
+      printGPSData();
+    }
   }
-  else
-  {
-    Serial.print(val, prec);
-    int vi = abs((int)val);
-    int flen = prec + (val < 0.0 ? 2 : 1); // . and -
-    flen += vi >= 1000 ? 4 : vi >= 100 ? 3 : vi >= 10 ? 2 : 1;
-    for (int i=flen; i<len; ++i)
-      Serial.print(' ');
-  }
-  smartDelay(0);
 }
 
-static void printInt(unsigned long val, bool valid, int len)
-{
-  char sz[32] = "*****************";
-  if (valid)
-    sprintf(sz, "%ld", val);
-  sz[len] = 0;
-  for (int i=strlen(sz); i<len; ++i)
-    sz[i] = ' ';
-  if (len > 0) 
-    sz[len-1] = ' ';
-  Serial.print(sz);
-  smartDelay(0);
-}
-
-static void printDateTime(TinyGPSDate &d, TinyGPSTime &t)
-{
-  if (!d.isValid())
-  {
-    Serial.print(F("********** "));
-  }
-  else
-  {
-    char sz[32];
-    sprintf(sz, "%02d/%02d/%02d ", d.month(), d.day(), d.year());
-    Serial.print(sz);
+void printGPSData() {
+  // Print the essential GPS data
+  if (gps.satellites.isValid()) {
+    Serial.print(F("Satellites: "));
+    Serial.print(gps.satellites.value());
+  } else {
+    Serial.print(F("Satellites: *"));
   }
   
-  if (!t.isValid())
-  {
-    Serial.print(F("******** "));
+  Serial.print(F(" | "));
+  
+  if (gps.location.isValid()) {
+    Serial.print(F("Lat: "));
+    Serial.print(gps.location.lat(), 6);
+    Serial.print(F(" | Lng: "));
+    Serial.print(gps.location.lng(), 6);
+  } else {
+    Serial.print(F("Lat: * | Lng: *"));
   }
-  else
-  {
-    char sz[32];
-    sprintf(sz, "%02d:%02d:%02d ", t.hour(), t.minute(), t.second());
-    Serial.print(sz);
+  
+  Serial.print(F(" | "));
+  
+  // Date
+  if (gps.date.isValid()) {
+    Serial.print(F("Date: "));
+    Serial.print(gps.date.month());
+    Serial.print(F("/"));
+    Serial.print(gps.date.day());
+    Serial.print(F("/"));
+    Serial.print(gps.date.year());
+  } else {
+    Serial.print(F("Date: *"));
   }
-
-  printInt(d.age(), d.isValid(), 5);
-  smartDelay(0);
-}
-
-static void printStr(const char *str, int len)
-{
-  int slen = strlen(str);
-  for (int i=0; i<len; ++i)
-    Serial.print(i<slen ? str[i] : ' ');
-  smartDelay(0);
+  
+  Serial.print(F(" | "));
+  
+  // Time (adjusted for MNT)
+  if (gps.time.isValid()) {
+    Serial.print(F("Time (MNT): "));
+    
+    // Adjust hour for MNT
+    int hour = gps.time.hour() + timeZoneOffset;
+    
+    // Handle day boundary crossing
+    if (hour < 0) {
+      hour += 24;
+    } else if (hour >= 24) {
+      hour -= 24;
+    }
+    
+    if (hour < 10) Serial.print(F("0"));
+    Serial.print(hour);
+    Serial.print(F(":"));
+    
+    if (gps.time.minute() < 10) Serial.print(F("0"));
+    Serial.print(gps.time.minute());
+    Serial.print(F(":"));
+    
+    if (gps.time.second() < 10) Serial.print(F("0"));
+    Serial.print(gps.time.second());
+  } else {
+    Serial.print(F("Time (MNT): *"));
+  }
+  
+  Serial.println();
+  
+  // Check if no GPS data is being received
+  if (gps.charsProcessed() < 10)
+    Serial.println(F("WARNING: No GPS data received - check wiring"));
 }

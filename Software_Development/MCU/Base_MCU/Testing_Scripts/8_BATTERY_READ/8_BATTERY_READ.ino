@@ -26,25 +26,28 @@
 
 #define BATTERY_INPUT_PIN 1
 
-int sensorValue = 0;        // value read from the pot
-int outputValue = 0;        // value output to the PWM (analog out)
-
+int batteryVoltage = 3000; // actual battery voltage in volts
+int batteryPercentage = 100;
 
 void setup() {
   Serial.begin(115200);
   //set the resolution to 12 bits (0-4095)
-  analogReadResolution(BATTERY_INPUT_PIN);
+  pinMode(BATTERY_INPUT_PIN, INPUT);
+  analogReadResolution(12);
 }
+
 
 // the loop function runs over and over again forever
 void loop() {
-  int analogValue = analogRead(BATTERY_INPUT_PIN);
-  int analogVolts = analogReadMilliVolts(BATTERY_INPUT_PIN);
+  batteryVoltage = analogReadMilliVolts(BATTERY_INPUT_PIN);
+  batteryPercentage = map(batteryVoltage, 2570, 3050, 0, 100);
+  if(batteryPercentage>100){batteryPercentage=100;}
+  if(batteryPercentage<0){batteryPercentage=0;} 
+  Serial.printf("Battery voltage = %d V\n", batteryVoltage);
+  Serial.printf("Battery Percentage = %d Percent\n", batteryPercentage);
 
-  // print out the values you read:
-  Serial.printf("ADC analog value = %d\n", analogValue);
-  Serial.printf("ADC millivolts value = %d\n", analogVolts);
-
-  delay(100);  // delay in between reads for clear read from serial
-  //outputValue = map(sensorValue, 0, 1023, 0, 255);
+  if(batteryPercentage<20){
+    Serial.println("Warning Battery Low!");
+  }
+  delay(1000);  // delay in between reads for clear read from serial
 }

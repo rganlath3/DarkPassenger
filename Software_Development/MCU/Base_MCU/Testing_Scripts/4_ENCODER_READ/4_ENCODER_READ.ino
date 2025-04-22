@@ -60,6 +60,8 @@ void setup() {
 
 // The loop routine runs over and over again forever.
 void loop() {
-  Serial.println("Left Wheel Switch: " + String(digitalRead(LEFT_WHEEL_SW_PIN)) + "Right Wheel Switch: "+ String(digitalRead(RIGHT_WHEEL_SW_PIN)));
-  Serial.println("Left Encoder: " + String(digitalRead(LEFT_ENC_PIN)) + "Right Encoder: "+ String(digitalRead(RIGHT_ENC_PIN)));
+  Serial.println("Left Wheel Switch: " + String(digitalRead(LEFT_WHEEL_SW_PIN)) + "  Right Wheel Switch: "+ String(digitalRead(RIGHT_WHEEL_SW_PIN)));
+  Serial.println("Left Encoder: " + String(digitalRead(LEFT_ENC_PIN)) + "  Right Encoder: "+ String(digitalRead(RIGHT_ENC_PIN)));
+  Serial.println("");
+  delay(500);
 }
