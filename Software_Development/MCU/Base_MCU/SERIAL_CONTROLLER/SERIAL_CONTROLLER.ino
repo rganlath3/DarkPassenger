@@ -1,6 +1,7 @@
 /*
   By Ranil Ganlath
   This script is for merging the testing scripts into one serially controlled script. Once verified working, this script will be used to integrate with ROS.
+  ESP32 1  - Battery Input Pin (from 0 to 3.3V)
   ESP32 47  - Toggle Switch 1
   ESP32 48  - Toggle Switch 2 (Not working, ESP32 might be damaged since wiring is good)
   ESP32 35  - Relay FWD Headlight Control Output
@@ -39,6 +40,7 @@
 
 
 // Pin definitions
+#define BATTERY_MONITOR_PIN 1
 #define TOGGLE_SW1_PIN 47
 #define TOGGLE_SW2_PIN 48 //not working
 #define FWD_RELAY_CTRL_PIN 35
@@ -74,7 +76,12 @@ HardwareSerial gpsSerial(2);
 
 //Import Libraries
 #include "CytronMotorDriver.h"
+#include <TinyGPSPlus.h>
 #include <MPU9250_asukiaaa.h>
+
+//Configure GPS
+TinyGPSPlus gps;
+const int timeZoneOffset = -6;
 
 //Configure IMS MPU9250
 MPU9250_asukiaaa mySensor;
@@ -93,7 +100,7 @@ int lastRightState = 0;
 unsigned long lastUpdateTime = 0;
 const unsigned long UPDATE_INTERVAL = 100; // Update every 100ms
 
-char command = 'S';         // Default to Stop
+char command = 'S';         // Default Command to Stop
 
 // Distance tracking - moved to global scope
 float leftDistanceMM = 0.0;
@@ -103,11 +110,12 @@ float leftDistanceInches = 0.0;
 float rightDistanceInches = 0.0;
 float avgDistanceInches = 0.0;
 
-// Function to calculate distance from encoder counts
-float calculateDistance(unsigned long counts) {
-  float revolutions = counts / TRANSITIONS_PER_REV;
-  return revolutions * PI * WHEEL_DIAMETER_MM;
-}
+
+
+
+//Battery Level Monitoring
+int batteryVoltage = 3000; // actual battery voltage in volts
+int batteryPercentage = 100;
 
 
 //Configure Relays
@@ -135,6 +143,10 @@ void setup() {
   delay(5000);
   digitalWrite(FWD_RELAY_CTRL_PIN,LOW);
   digitalWrite(AFT_RELAY_CTRL_PIN,LOW);
+  
+  //Battery Monitoring
+  pinMode(BATTERY_MONITOR_PIN, INPUT);
+  analogReadResolution(12);
   
   Serial.begin(115200);
   while(!Serial);
@@ -164,22 +176,10 @@ void setup() {
 
 // The loop routine runs over and over again forever.
 void loop() {
-  // Read encoder states and count transitions
-  int currentLeftState = digitalRead(LEFT_ENC_PIN);
-  int currentRightState = digitalRead(RIGHT_ENC_PIN);
-  
-  // Check for left encoder transition
-  if (currentLeftState != lastLeftState) {
-    leftEncoderCount++;
-    lastLeftState = currentLeftState;
-  }
-  
-  // Check for right encoder transition
-  if (currentRightState != lastRightState) {
-    rightEncoderCount++;
-    lastRightState = currentRightState;
-  }
-  
+  // Process GPS data continuously
+  while (gpsSerial.available())
+    gps.encode(gpsSerial.read());
+
   // Check for serial commands
   if (Serial.available() > 0) {
     command = Serial.read();
@@ -193,25 +193,25 @@ void loop() {
     switch (command) {
       case 'F':  // Forward
         Serial.println("Moving Forward");
-        motor1.setSpeed(MOTOR_SPEED);   // Left motor forward
+        motor1.setSpeed(-MOTOR_SPEED);   // Left motor forward
         motor2.setSpeed(-MOTOR_SPEED);   // Right motor forward
         break;
         
       case 'B':  // Backward
         Serial.println("Moving Backward");
-        motor1.setSpeed(-MOTOR_SPEED);  // Left motor backward
+        motor1.setSpeed(MOTOR_SPEED);  // Left motor backward
         motor2.setSpeed(MOTOR_SPEED);  // Right motor backward
         break;
         
       case 'R':  // Right turn
         Serial.println("Turning Right");
-        motor1.setSpeed(TURNING_SPEED);  // Left motor forward
+        motor1.setSpeed(-TURNING_SPEED);  // Left motor forward
         motor2.setSpeed(TURNING_SPEED);   // Right motor backward
         break;
         
       case 'L':  // Left turn
         Serial.println("Turning Left");
-        motor1.setSpeed(-TURNING_SPEED);    // Left motor backward
+        motor1.setSpeed(TURNING_SPEED);    // Left motor backward
         motor2.setSpeed(-TURNING_SPEED);   // Right motor forward
         break;
         
@@ -228,135 +228,57 @@ void loop() {
         leftDistanceMM = 0;
         rightDistanceMM = 0;
         break;
-      case 'O':  // Template
-        Serial.println("Template Message");
-        //Do stuff here
+      case 'K':  // Report Battery Percentage
+        Serial.println("Reporting Battery Voltage");
+        Serial.printf("Battery voltage = %d V\n", batteryVoltage);
+        Serial.printf("Battery Percentage = %d Percent\n", batteryPercentage);
         break;
       case 'G':  // Report GPS Info
         Serial.println("Reporting GPS Info");
-        //Do stuff here
+        readGPS();
         break;
       case 'E':  // Report Encoder Distance
         Serial.println("Reporting Distance Travelled");
-        // Print sensor and encoder data
-        Serial.println("-------- Sensor Data --------");
-        Serial.println("Left Wheel Switch: " + String(digitalRead(LEFT_WHEEL_SW_PIN)) + 
-                      ", Right Wheel Switch: " + String(digitalRead(RIGHT_WHEEL_SW_PIN)));
-        Serial.println("Left Encoder State: " + String(currentLeftState) + 
-                      ", Right Encoder State: " + String(currentRightState));
-        
-        Serial.println("-------- Distance Data --------");
-        Serial.println("Left Encoder Count: " + String(leftEncoderCount) + 
-                      ", Right Encoder Count: " + String(rightEncoderCount));
-                      
-        // Print distances in mm
-        Serial.println("Left Distance: " + String(leftDistanceMM, 1) + " mm (" + 
-                      String(leftDistanceMM/1000, 2) + " m)");
-        Serial.println("Right Distance: " + String(rightDistanceMM, 1) + " mm (" + 
-                      String(rightDistanceMM/1000, 2) + " m)");
-        Serial.println("Average Distance: " + String(avgDistanceMM, 1) + " mm (" + 
-                      String(avgDistanceMM/1000, 2) + " m)");
-                      
-        // Print distances in inches
-        Serial.println("Left Distance: " + String(leftDistanceInches, 1) + " in (" + 
-                      String(leftDistanceInches/12, 2) + " ft)");
-        Serial.println("Right Distance: " + String(rightDistanceInches, 1) + " in (" + 
-                      String(rightDistanceInches/12, 2) + " ft)");
-        Serial.println("Average Distance: " + String(avgDistanceInches, 1) + " in (" + 
-                      String(avgDistanceInches/12, 2) + " ft)");
-                      
-        Serial.println();
+        printEncoders();
         break;
       case 'T':  // Toggle Switch
         Serial.println("Toggle Switch Read");
-        toggleSwitch1_state = digitalRead(TOGGLE_SW1_PIN);
-        toggleSwitch2_state = digitalRead(TOGGLE_SW2_PIN);
-        Serial.printf("Toggle Switch 1 Value = %d\n", toggleSwitch1_state);
-        Serial.printf("Toggle Switch 2 Value = %d\n", toggleSwitch2_state);
+        readToggleSwitches();
+        Serial.println("Toggle Switch 1 Value = " + String(toggleSwitch1_state) + "  Toggle Switch 2 Value =  "+ String(toggleSwitch2_state));
         break;
       case 'H':  // Headlight
         Serial.println("Toggling Headlight");
-        if(FWD_RELAY_ON){
-          digitalWrite(FWD_RELAY_CTRL_PIN,LOW);
-          FWD_RELAY_ON=false;
-        }
-        else{
-          digitalWrite(FWD_RELAY_CTRL_PIN,HIGH);
-          FWD_RELAY_ON=true;
-        }
+        toggleHeadlight();
         break;
       case 'J':  // Brake Light
         Serial.println("Toggling Brake Light");
-        if(AFT_RELAY_ON){
-          digitalWrite(AFT_RELAY_CTRL_PIN,LOW);
-          AFT_RELAY_ON=false;
-        }
-        else{
-          digitalWrite(AFT_RELAY_CTRL_PIN,HIGH);
-          AFT_RELAY_ON=true;
-        }
+        toggleBrakelight();
         break;
       case 'I':  // IMS Report
         Serial.println("Reporting IMS Readout");
-        uint8_t sensorId;
-        int result;
-        result = mySensor.readId(&sensorId);
-        if (result == 0) {
-          Serial.println("sensorId: " + String(sensorId));
-        } else {
-          Serial.println("Cannot read sensorId " + String(result));
-        }
-        result = mySensor.accelUpdate();
-        if (result == 0) {
-          aX = mySensor.accelX();
-          aY = mySensor.accelY();
-          aZ = mySensor.accelZ();
-          aSqrt = mySensor.accelSqrt();
-          Serial.println("accelX: " + String(aX));
-          Serial.println("accelY: " + String(aY));
-          Serial.println("accelZ: " + String(aZ));
-          Serial.println("accelSqrt: " + String(aSqrt));
-        } else {
-          Serial.println("Cannod read accel values " + String(result));
-        }
-        result = mySensor.gyroUpdate();
-        if (result == 0) {
-          gX = mySensor.gyroX();
-          gY = mySensor.gyroY();
-          gZ = mySensor.gyroZ();
-          Serial.println("gyroX: " + String(gX));
-          Serial.println("gyroY: " + String(gY));
-          Serial.println("gyroZ: " + String(gZ));
-        } else {
-          Serial.println("Cannot read gyro values " + String(result));
-        }
-        result = mySensor.magUpdate();
-        if (result != 0) {
-          Serial.println("cannot read mag so call begin again");
-          mySensor.beginMag();
-          result = mySensor.magUpdate();
-        }
-        if (result == 0) {
-          mX = mySensor.magX();
-          mY = mySensor.magY();
-          mZ = mySensor.magZ();
-          mDirection = mySensor.magHorizDirection();
-          Serial.println("magX: " + String(mX));
-          Serial.println("maxY: " + String(mY));
-          Serial.println("magZ: " + String(mZ));
-          Serial.println("horizontal direction: " + String(mDirection));
-        } else {
-          Serial.println("Cannot read mag values " + String(result));
-        }
-        Serial.println("at " + String(millis()) + "ms");
-        Serial.println(""); // Add an empty line
+        readIMS();
         break;
       default:
         // Do nothing for unrecognized commands
         break;
     }
   }
+  // Read encoder states and count transitions
+  int currentLeftState = digitalRead(LEFT_ENC_PIN);
+  int currentRightState = digitalRead(RIGHT_ENC_PIN);
   
+  // Check for left encoder transition
+  if (currentLeftState != lastLeftState) {
+    leftEncoderCount++;
+    lastLeftState = currentLeftState;
+  }
+  
+  // Check for right encoder transition
+  if (currentRightState != lastRightState) {
+    rightEncoderCount++;
+    lastRightState = currentRightState;
+  }
+
   // Update and calculate distances periodically but don't print
   unsigned long currentTime = millis();
   if (currentTime - lastUpdateTime >= UPDATE_INTERVAL) {
@@ -374,5 +296,248 @@ void loop() {
     
     // Update the timing
     lastUpdateTime = currentTime;
+
+    //Misc Periodic Monitoring
+    readBatteryLevel();
   }
+}
+
+
+///////////////////Function Definitions//////////////////
+// Function to calculate distance from encoder counts
+float calculateDistance(unsigned long counts) {
+  float revolutions = counts / TRANSITIONS_PER_REV;
+  return revolutions * PI * WHEEL_DIAMETER_MM;
+}
+
+// Function to check the 20V battery level
+void readBatteryLevel(){
+  batteryVoltage = analogReadMilliVolts(BATTERY_MONITOR_PIN);
+  batteryPercentage = map(batteryVoltage, 2570, 3050, 0, 100);
+  if(batteryPercentage>100){batteryPercentage=100;}
+  if(batteryPercentage<0){batteryPercentage=0;} 
+  if(batteryPercentage<20){
+    Serial.println("Warning Battery Low!");
+  }
+  return;
+}
+
+//Function to check MPU9250 IMS
+void readIMS(){
+  uint8_t sensorId;
+  int result;
+  result = mySensor.readId(&sensorId);
+  if (result == 0) {
+    Serial.println("sensorId: " + String(sensorId));
+  } else {
+    Serial.println("Cannot read sensorId " + String(result));
+  }
+  result = mySensor.accelUpdate();
+  if (result == 0) {
+    aX = mySensor.accelX();
+    aY = mySensor.accelY();
+    aZ = mySensor.accelZ();
+    aSqrt = mySensor.accelSqrt();
+    Serial.println("accelX: " + String(aX));
+    Serial.println("accelY: " + String(aY));
+    Serial.println("accelZ: " + String(aZ));
+    Serial.println("accelSqrt: " + String(aSqrt));
+  } else {
+    Serial.println("Cannod read accel values " + String(result));
+  }
+  result = mySensor.gyroUpdate();
+  if (result == 0) {
+    gX = mySensor.gyroX();
+    gY = mySensor.gyroY();
+    gZ = mySensor.gyroZ();
+    Serial.println("gyroX: " + String(gX));
+    Serial.println("gyroY: " + String(gY));
+    Serial.println("gyroZ: " + String(gZ));
+  } else {
+    Serial.println("Cannot read gyro values " + String(result));
+  }
+  result = mySensor.magUpdate();
+  if (result != 0) {
+    Serial.println("cannot read mag so call begin again");
+    mySensor.beginMag();
+    result = mySensor.magUpdate();
+  }
+  if (result == 0) {
+    mX = mySensor.magX();
+    mY = mySensor.magY();
+    mZ = mySensor.magZ();
+    mDirection = mySensor.magHorizDirection();
+    Serial.println("magX: " + String(mX));
+    Serial.println("maxY: " + String(mY));
+    Serial.println("magZ: " + String(mZ));
+    Serial.println("horizontal direction: " + String(mDirection));
+  } else {
+    Serial.println("Cannot read mag values " + String(result));
+  }
+  Serial.println("at " + String(millis()) + "ms");
+  Serial.println(""); // Add an empty line
+}
+
+
+
+// Function to turn on headlight relay
+void turnOnHeadlight(){
+  digitalWrite(FWD_RELAY_CTRL_PIN,HIGH);
+  FWD_RELAY_ON=true;
+  return;
+}
+
+// Function to turn off headlight relay
+void turnOffHeadlight(){
+  digitalWrite(FWD_RELAY_CTRL_PIN,LOW);
+  FWD_RELAY_ON=false;
+  return;
+}
+
+// Function to toggle headlight relay
+void toggleHeadlight(){
+  if(FWD_RELAY_ON){
+    digitalWrite(FWD_RELAY_CTRL_PIN,LOW);
+    FWD_RELAY_ON=false;
+  }
+  else{
+    digitalWrite(FWD_RELAY_CTRL_PIN,HIGH);
+    FWD_RELAY_ON=true;
+  }
+  return;
+}
+
+// Function to turn on brakelight relay
+void turnOnBrakelight(){
+  digitalWrite(AFT_RELAY_CTRL_PIN,HIGH);
+  AFT_RELAY_ON=true;
+  return;
+}
+
+// Function to turn off brakelight relay
+void turnOffBrakelight(){
+  digitalWrite(AFT_RELAY_CTRL_PIN,LOW);
+  AFT_RELAY_ON=false;
+  return;
+}
+
+// Function to toggle brakelight relay
+void toggleBrakelight(){
+  if(AFT_RELAY_ON){
+    digitalWrite(AFT_RELAY_CTRL_PIN,LOW);
+    AFT_RELAY_ON=false;
+  }
+  else{
+    digitalWrite(AFT_RELAY_CTRL_PIN,HIGH);
+    AFT_RELAY_ON=true;
+  }
+  return;
+}
+
+void readToggleSwitches(){
+  toggleSwitch1_state = digitalRead(TOGGLE_SW1_PIN);
+  toggleSwitch2_state = digitalRead(TOGGLE_SW2_PIN);
+  return;
+}
+
+void printEncoders(){
+    // Print sensor and encoder data
+  Serial.println("-------- Sensor Data --------");
+  Serial.println("Left Wheel Switch: " + String(digitalRead(LEFT_WHEEL_SW_PIN)) + 
+                ", Right Wheel Switch: " + String(digitalRead(RIGHT_WHEEL_SW_PIN)));
+
+  Serial.println("-------- Distance Data --------");
+  Serial.println("Left Encoder Count: " + String(leftEncoderCount) + 
+                ", Right Encoder Count: " + String(rightEncoderCount));
+                
+  // Print distances in mm
+  Serial.println("Left Distance: " + String(leftDistanceMM, 1) + " mm (" + 
+                String(leftDistanceMM/1000, 2) + " m)");
+  Serial.println("Right Distance: " + String(rightDistanceMM, 1) + " mm (" + 
+                String(rightDistanceMM/1000, 2) + " m)");
+  Serial.println("Average Distance: " + String(avgDistanceMM, 1) + " mm (" + 
+                String(avgDistanceMM/1000, 2) + " m)");
+                
+  // Print distances in inches
+  Serial.println("Left Distance: " + String(leftDistanceInches, 1) + " in (" + 
+                String(leftDistanceInches/12, 2) + " ft)");
+  Serial.println("Right Distance: " + String(rightDistanceInches, 1) + " in (" + 
+                String(rightDistanceInches/12, 2) + " ft)");
+  Serial.println("Average Distance: " + String(avgDistanceInches, 1) + " in (" + 
+                String(avgDistanceInches/12, 2) + " ft)");
+                
+  Serial.println();
+}
+
+
+// Function to read and print GPS data
+void readGPS() {
+  // Print the essential GPS data
+  if (gps.satellites.isValid()) {
+    Serial.print(F("Satellites: "));
+    Serial.print(gps.satellites.value());
+  } else {
+    Serial.print(F("Satellites: *"));
+  }
+  
+  Serial.print(F(" | "));
+  
+  if (gps.location.isValid()) {
+    Serial.print(F("Lat: "));
+    Serial.print(gps.location.lat(), 6);
+    Serial.print(F(" | Lng: "));
+    Serial.print(gps.location.lng(), 6);
+  } else {
+    Serial.print(F("Lat: * | Lng: *"));
+  }
+  
+  Serial.print(F(" | "));
+  
+  // Date
+  if (gps.date.isValid()) {
+    Serial.print(F("Date: "));
+    Serial.print(gps.date.month());
+    Serial.print(F("/"));
+    Serial.print(gps.date.day());
+    Serial.print(F("/"));
+    Serial.print(gps.date.year());
+  } else {
+    Serial.print(F("Date: *"));
+  }
+  
+  Serial.print(F(" | "));
+  
+  // Time (adjusted for MNT)
+  if (gps.time.isValid()) {
+    Serial.print(F("Time (MNT): "));
+    
+    // Adjust hour for MNT
+    int hour = gps.time.hour() + timeZoneOffset;
+    
+    // Handle day boundary crossing
+    if (hour < 0) {
+      hour += 24;
+    } else if (hour >= 24) {
+      hour -= 24;
+    }
+    
+    if (hour < 10) Serial.print(F("0"));
+    Serial.print(hour);
+    Serial.print(F(":"));
+    
+    if (gps.time.minute() < 10) Serial.print(F("0"));
+    Serial.print(gps.time.minute());
+    Serial.print(F(":"));
+    
+    if (gps.time.second() < 10) Serial.print(F("0"));
+    Serial.print(gps.time.second());
+  } else {
+    Serial.print(F("Time (MNT): *"));
+  }
+  
+  Serial.println();
+  
+  // Check if no GPS data is being received
+  if (gps.charsProcessed() < 10)
+    Serial.println(F("WARNING: No GPS data received - check wiring"));
 }
