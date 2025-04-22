@@ -20,14 +20,21 @@ You should get ROS_VERSION=2, ROS_PYTHON_VERSION=3, and ROS_DISTRO=jazzy
 Navigate to the workspace and run this command to find the packages
 ```source install/setup.bash```
 
-#### Install Gazebo Harmonic Simulator
+Add the path of the ROS2 workspace to the startup script as well.
+```source /opt/ros/jazzy/setup.bash```
+```source ~/github/DarkPassenger/ROS2/dp_ws/install/setup.bash```
 
-```sudo apt install ros-jazzy-ros2-control```
-```sudo apt install ros-jazzy-ros2-controllers```
+#### Install Gazebo Harmonic Simulator
 ```sudo apt-get install ros-${ROS_DISTRO}-ros-gz```
 ```sudo apt install ros-jazzy-gz-ros2-control```
+```sudo apt install ros-jazzy-twist-mux```
+```sudo apt install ros-jazzy-twist-stamper```
+```sudo apt install ros-jazzy-ros2-control```
+```sudo apt install ros-jazzy-ros2-controllers```
 ```sudo apt install ros-jazzy-joy*```
 ```sudo apt install ros-jazzy-joint-state-publisher```
+
+
 
 Test your install
 ```ros2 launch ros_gz_sim gz_sim.launch.py gz_args:=empty.sdf```
@@ -71,3 +78,69 @@ Import our robot into the gazebo world simulation.
 ```ros2 run ros_gz_sim create -topic robot_description```
 
 Note: this is a migrated command from the classic gazebo command ```ros2 run gazebo_ros spawn_entity.py -topic robot_description```
+
+
+#### Using a launch file to start Gazebo, Robot State Publisher, and Spawn our Robot from URDF file.
+```ros2 launch dexter launch_sim.launch.py```
+
+
+
+#### Controlling your Robot's velocity commands via keyboard for Gazebo and RVIZ
+Using 3x terminals:
+Term1: ```ros2 launch dexter launch_sim.launch.py```
+Term2: ```ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/diff_cont/cmd_vel_unstamped```
+We have to remap the cmd_vel topic due to Jazzy-Harmonic changes.
+Term3: ```rviz2```
+
+
+#### Connecting to the RPLidar (Physical Hardware)
+Install the RPLIDAR ROS Package
+```sudo apt install ros-jazzy-rplidar-ros```
+
+Add USB Reading Permissions:
+```sudo usermod -a -G dialout $USER```
+
+Check List of USB Devices
+```ls -1 /dev |grep ttyUSB```
+
+Run the Lidar Node:
+```ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/ttyUSB0 -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard```
+
+To Stop The motor:
+```ros2 service call /stop_motor std_srvs/srv/Empty {}```
+
+To Start the motor:
+```ros2 service call /start_motor std_srvs/srv/Empty {}```
+
+
+Here is a good launch file test script:
+```ros2 launch rplidar_ros view_rplidar.launch.py```
+
+If a closed script is still hogging the USB port, you can run this command:
+```killall rplidar_composition```
+
+
+#### Camera (Software)
+The camera is outputting it's uncompressed image out to the topic: /camera/image_raw
+
+In order to compress the images (eats up processing power but greatly reduces bandwidth for video stream), we need to install a ROS transport plugin.
+```sudo apt install ros-jazzy-image-transport-plugins```
+```sudo apt install ros-jazzy-rqt-image-view```
+
+To visually see ros image topics, use ```ros2 run rqt_image_view  rqt_image_view```
+
+To convert between compressed and uncompressed feeds, we can use:
+ros2 run image_transport list_transports
+
+Ex. Compressed to Raw
+ros2 run image_transport republish compressed raw --ros-args -r in/compressed:=/camera/image_raw/compressed -r out:=/camera/image_raw/raw/uncompressed
+Note: This doesn't seem to be working as the output is not being configured correctly. I couldnt find any similar errors online.
+
+
+#### Depth Camera
+I am using an RGBD camera in Gazebo (URDF plugin) and passing the image and depth_image info using gz_bridge. For the depth point data, I am....
+
+
+
+#### ROS2 Jazzy and Gazebo Harmonic
+In Gazebo Classic, topics were easily shared between Gazebo and ROS2 interface. Now they are separate and we need to use a bridge to link the two topic names together. Often times, the easiest solution to a problem is that a topic is only in one environment and isn't bridged. We can check this by using the topic viewer in Gazebo and comparing it to the ROS2 topic list command output. We define the data we are bridging using the gz_bridge.yaml file and specify it in our launch command. Image topics use their own launch command.
