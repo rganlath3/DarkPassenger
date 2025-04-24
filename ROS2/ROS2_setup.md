@@ -144,3 +144,29 @@ I am using an RGBD camera in Gazebo (URDF plugin) and passing the image and dept
 
 #### ROS2 Jazzy and Gazebo Harmonic
 In Gazebo Classic, topics were easily shared between Gazebo and ROS2 interface. Now they are separate and we need to use a bridge to link the two topic names together. Often times, the easiest solution to a problem is that a topic is only in one environment and isn't bridged. We can check this by using the topic viewer in Gazebo and comparing it to the ROS2 topic list command output. We define the data we are bridging using the gz_bridge.yaml file and specify it in our launch command. Image topics use their own launch command.
+
+
+
+
+#### Arduino Serial Setup
+Install Arduino 1.8.19 IDE
+
+Add permissions to use serial ports.
+```sudo usermod -a -G dialout $USER```
+
+Note: You will need to log out and log back in for the changes to take effect. Install the Arduino IDE on your computer. This tutorial used 1.8.19. Verify the code works using the Arduino IDE serial monitor. If it works, record the device's serial port using the following command:
+
+```ls /dev/tty*```
+Note: The serial port will be /dev/ttyUSB* or /dev/ttyACM*. 
+
+Install the pyserial package on your computer using the following command:
+```pip install pyserial```
+
+Verify installation
+```python3```
+```import serial```
+```import time```
+```esp32=serial.Serial(port='/dev/ttyACM0', baudrate=115200, timeout=.1)```
+```print(esp32.readline())```
+
+Now we can write a Python node that communicates with your ESP32 board through the serial port.
