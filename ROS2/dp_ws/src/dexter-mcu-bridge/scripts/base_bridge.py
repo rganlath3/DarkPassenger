@@ -3,7 +3,7 @@
 #Dexter-MCU-Bridge base_bridge.py by Ranil Ganlath. 
 #This ROS2 Python Node creates a publisher and subscriber setup. The subscriber reads /MCU/Base/serial_tx topic and transmits it via serial to the Base MCU (ESP32).
 #This node also reads serial data in from the Base MCU (ESP32) and publishes it to the /MCU/Base/serial_rx topic.
-# Copyright (C) 2023 Ranil Ganlath
+# Copyright (C) 2025 Ranil Ganlath
 
 import rclpy
 from rclpy.node import Node
