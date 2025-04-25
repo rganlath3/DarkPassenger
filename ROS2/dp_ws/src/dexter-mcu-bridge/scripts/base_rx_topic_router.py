@@ -100,7 +100,7 @@ class SerialSubscriber(Node):
         variableE = float(message_parts[5])
         variableF = float(message_parts[6])
         new_msg = String()
-        new_msg.data = "Toggle Switch 1: " + str(variableA) + "Toggle Switch 2: " + str(variableB) + " Left Wheel Grounded: " + str(variableC) + " Right Wheel Grounded: " + str(variableD) + " Head Light On: " + str(variableE) + " Brake Light On: " + str(variableF)
+        new_msg.data = "Toggle SW 1: " + str(variableA) + " Toggle SW 2: " + str(variableB) + " Left WH GND: " + str(variableC) + " Right WH GND: " + str(variableD) + " Headlight: " + str(variableE) + " Brakelight: " + str(variableF)
         self.status_publisher.publish(new_msg)
 
     def handle_odometry(self, msg, message_parts):
@@ -119,7 +119,7 @@ class SerialSubscriber(Node):
         new_msg.data = "WARN: Received unknown command type: " + str(message_parts[0])
         self.status_publisher.publish(new_msg)
 
-    ##################OLD STUFF BELOW###################
+
 
 def main(args=None):
     rclpy.init(args=args)
