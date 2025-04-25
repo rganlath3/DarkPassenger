@@ -170,3 +170,9 @@ Verify installation
 ```print(esp32.readline())```
 
 Now we can write a Python node that communicates with your ESP32 board through the serial port.
+
+
+#### Interfacing with ESP32 over Serial
+I created a custom python ROS2 package for interfacing with both the base and turret (future implementation) microcontrollers.
+The base_bridge.py connects the ESP32 with 2x topics: serial_tx and serial_rx. Other nodes interface with these topics to generate commands or use the input datastream.
+The base_rx_topic_router processes the serial_rx topic and formats and packages data out to relevant topics.
