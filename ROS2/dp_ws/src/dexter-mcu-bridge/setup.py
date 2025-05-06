@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "base_bridge = dexter-mcu-bridge.base_bridge:main"
+            "base_bridge = scripts.base_bridge:main",
+            "base_rx_topic_router = scripts.base_rx_topic_router:main"
         ],
     },
 )
