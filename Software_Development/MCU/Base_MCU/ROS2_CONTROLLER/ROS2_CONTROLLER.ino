@@ -80,6 +80,8 @@
 #define CMD_MOVE 'M'          // Format: <M,speed_left,speed_right>
 #define CMD_LIGHTS 'L'        // Format: <L,headlight,brakelight> (0=off, 1=on)
 #define CMD_RESET_ENC 'R'     // Format: <R> - Reset encoders
+#define CMD_HEARTBEAT 'H'     // Format: <H> - Triggers MSG_Start, Responds with <K,1>
+
 
 // ROS2 Sensor Message Types
 #define MSG_START 'K'         // Format: <K,1>
@@ -336,6 +338,10 @@ void parseAndExecuteCommand() {
       rightEncoderCount = 0;
       leftDistanceMM = 0;
       rightDistanceMM = 0;
+      break;
+
+    case CMD_HEARTBEAT:
+      Serial.println("<K,1>");
       break;
   }
 }
