@@ -1,7 +1,8 @@
 /*
   By Ranil Ganlath (Modified for ROS2 Communication)
   This script is for adapting the Serial Controller to be in a format for sending and receiving ROS2 serial messages.
-  
+  The Dark Passenger ROS2 Controller expects a command along with chunks of data like floats, text, etc. The data notation is "<CMD,value_1,value_2,...value_n>. Ex. <M,80,80> which sets the motor velocities for both wheels to 80 speed.
+
   ESP32 1  - Battery Input Pin (from 0 to 3.3V)
   ESP32 47  - Toggle Switch 1
   ESP32 48  - Toggle Switch 2 (Not working, ESP32 might be damaged since wiring is good)
@@ -81,6 +82,7 @@
 #define CMD_RESET_ENC 'R'     // Format: <R> - Reset encoders
 
 // ROS2 Sensor Message Types
+#define MSG_START 'K'         // Format: <K,1>
 #define MSG_ODOM 'O'          // Format: <O,left_dist,right_dist,left_count,right_count>
 #define MSG_BATTERY 'B'       // Format: <B,voltage,percentage>
 #define MSG_IMU 'I'           // Format: <I,aX,aY,aZ,gX,gY,gZ,mX,mY,mZ,heading>
@@ -186,9 +188,10 @@ void setup() {
   // Initialize motors (stopped)
   motor1.setSpeed(0);
   motor2.setSpeed(0);
-  
-  // Send initialization complete message
-  Serial.println("<INIT,ESP32_ROBOT_CONTROLLER>");
+
+   
+  // Send robot initialization complete message  
+  Serial.println("<K,1>");
 }
 
 void loop() {
