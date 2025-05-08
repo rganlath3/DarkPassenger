@@ -138,6 +138,3 @@ self.number = self.get_parameter("number_to_publish").value
 ```
 
 
-## Making python files executable
-In terminal, navigate to where your script is located. Then use the following command.
-```chmod +x nameOfPythonScript.py```

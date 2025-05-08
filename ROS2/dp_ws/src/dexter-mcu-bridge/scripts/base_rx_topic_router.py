@@ -16,7 +16,7 @@ from sensor_msgs.msg import Imu, MagneticField, NavSatFix, BatteryState
 class SerialSubscriber(Node):
 
     def __init__(self):
-        super().__init__('base_serial_topic_router')
+        super().__init__('base_serial_rx_topic_router')
 
         # Declare parameters
         self.declare_parameter('base_frame_id', 'base_link')
@@ -25,7 +25,7 @@ class SerialSubscriber(Node):
         self.base_frame_id = self.get_parameter('base_frame_id').get_parameter_value().string_value
 
         # Initialize subscribers
-        self.subscription = self.create_subscription(String, 'MCU/Base/serial_rx', self.callback, 10)
+        self.serial_subscriber = self.create_subscription(String, 'MCU/Base/serial_rx', self.callback, 10)
 
         # Initialize publishers
         self.odometry_publisher = self.create_publisher(String, 'MCU/Base/odometry', 10)
@@ -34,13 +34,13 @@ class SerialSubscriber(Node):
         self.MagneticField_publisher = self.create_publisher(MagneticField, 'MCU/Base/imu/mag', 10)
         self.GPS_publisher = self.create_publisher(NavSatFix, 'MCU/Base/gps/fix', 10)
         self.status_publisher = self.create_publisher(String, 'MCU/Base/status', 10)
-
-
         self.encoder_publisher = self.create_publisher(String,'MCU/Base/encoder_info', 10)
         self.motor_target_publisher = self.create_publisher(String, 'MCU/Base/motor_target_info', 10)
         self.motor_velocity_publisher = self.create_publisher(String, 'MCU/Base/motor_velocity_info', 10)
+
         # Add more publishers for other commands as needed
 
+    #Serial_RX Subscription Callback
     def callback(self, msg):
         for indcmd in msg.data.split('<'): 
             if indcmd != '':
