@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             "base_bridge = scripts.base_bridge:main",
-            "base_rx_topic_router = scripts.base_rx_topic_router:main"
+            "base_topic_router = scripts.base_topic_router:main"
         ],
     },
 )
