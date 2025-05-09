@@ -120,7 +120,7 @@
         </visual>
         <collision>
             <geometry>
-                <cylinder radius="${roomba_wheel_radius}" length="${roomba_wheel_thickness}"/>
+                <sphere radius="${roomba_wheel_radius}"/>
             </geometry>
         </collision>
         <xacro:inertial_cylinder mass="${roomba_wheel_weight}" radius="${roomba_wheel_radius}" length="${roomba_wheel_thickness}">
@@ -147,7 +147,7 @@
         </visual>
         <collision>
             <geometry>
-                <cylinder radius="${roomba_wheel_radius}" length="${roomba_wheel_thickness}"/>
+                <sphere radius="${roomba_wheel_radius}"/>
             </geometry>
         </collision>
         <xacro:inertial_cylinder mass="${roomba_wheel_weight}" radius="${roomba_wheel_radius}" length="${roomba_wheel_thickness}">
