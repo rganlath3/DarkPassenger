@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 #Dexter-MCU-Bridge base_differential_drive_controller.py by Ranil Ganlath. 
-#This ROS2 Python Node creates a publisher and subscriber setup. 
+#This node is for controlling the robot without ROS2_Control. (If you are using ros2_control, see base_ros2_control_hardware_interface.py)
+#This ROS2 Python Node creates a publisher and subscriber setup.
 # The subscriber reads /cmd_vel Twist topic published by a ROS controller such as teleop_twist_keyboard 
 # It then converts the Twist message to left and right wheel motor commands and publishes them on the /MCU/Base/serial_tx topic with message format <M,LEFT_WHEEL_VELOCITY,RIGHT_WHEEL_VELOCITY>
 # Copyright (C) 2025 Ranil Ganlath
