@@ -176,3 +176,22 @@ Now we can write a Python node that communicates with your ESP32 board through t
 I created a custom python ROS2 package for interfacing with both the base and turret (future implementation) microcontrollers.
 The base_bridge.py connects the ESP32 with 2x topics: serial_tx and serial_rx. Other nodes interface with these topics to generate commands or use the input datastream.
 The base_rx_topic_router processes the serial_rx topic and formats and packages data out to relevant topics.
+
+## Making python files executable
+In terminal, navigate to where your script is located. Then use the following command.
+```chmod +x nameOfPythonScript.py```
+
+
+
+## Setting up ROS2 Control
+sudo apt install ros-jazzy-ros2-control
+sudo apt install ros-jazzy-ros2-controllers
+sudo apt install ros-jazzy-gz-ros2-control
+
+## Remapping Teleop Twist Keyboard ROS2 Node
+### For ROS2 DiffDrive Plugin
+```ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diff_cont/cmd_vel_unstamped```
+
+
+### For ROS2 ROS2_Control Plugin
+```ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diff_cont/cmd_vel -p stamped:=true```

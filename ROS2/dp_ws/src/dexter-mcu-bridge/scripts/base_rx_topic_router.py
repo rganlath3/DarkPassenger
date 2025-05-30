@@ -6,7 +6,6 @@
 #Ex. If the MCU sends out encoder info, this node will forward the message to the /encoder topic.
 # Copyright (C) 2025 Ranil Ganlath
 
-
 import rclpy
 import time
 from rclpy.node import Node
@@ -17,7 +16,7 @@ from sensor_msgs.msg import Imu, MagneticField, NavSatFix, BatteryState
 class SerialSubscriber(Node):
 
     def __init__(self):
-        super().__init__('base_rx_serial_subscriber')
+        super().__init__('base_serial_rx_topic_router')
 
         # Declare parameters
         self.declare_parameter('base_frame_id', 'base_link')
@@ -26,7 +25,7 @@ class SerialSubscriber(Node):
         self.base_frame_id = self.get_parameter('base_frame_id').get_parameter_value().string_value
 
         # Initialize subscribers
-        self.subscription = self.create_subscription(String, 'MCU/Base/serial_rx', self.callback, 10)
+        self.serial_subscriber = self.create_subscription(String, 'MCU/Base/serial_rx', self.callback, 10)
 
         # Initialize publishers
         self.odometry_publisher = self.create_publisher(String, 'MCU/Base/odometry', 10)
@@ -35,13 +34,13 @@ class SerialSubscriber(Node):
         self.MagneticField_publisher = self.create_publisher(MagneticField, 'MCU/Base/imu/mag', 10)
         self.GPS_publisher = self.create_publisher(NavSatFix, 'MCU/Base/gps/fix', 10)
         self.status_publisher = self.create_publisher(String, 'MCU/Base/status', 10)
-
-
         self.encoder_publisher = self.create_publisher(String,'MCU/Base/encoder_info', 10)
         self.motor_target_publisher = self.create_publisher(String, 'MCU/Base/motor_target_info', 10)
         self.motor_velocity_publisher = self.create_publisher(String, 'MCU/Base/motor_velocity_info', 10)
+
         # Add more publishers for other commands as needed
 
+    #Serial_RX Subscription Callback
     def callback(self, msg):
         for indcmd in msg.data.split('<'): 
             if indcmd != '':
@@ -75,7 +74,6 @@ class SerialSubscriber(Node):
         self.status_publisher.publish(new_msg)
 
     def handle_battery(self, msg, message_parts):
-        #For now this function will just echo battery data as a string. Later on, I need to repackage info to interface with the correct ROS2 topic message formats for other plugins.
         #This repackages raw battery info into a proper BatteryState format topic.
         voltage_mv = float(message_parts[1])
         percentage = float(message_parts[2])
@@ -92,8 +90,7 @@ class SerialSubscriber(Node):
         self.battery_publisher.publish(battery_msg)
 
     def handle_IMU(self, msg, message_parts):
-        # TO DO
-        # For now this function will just echo IMU data as a string. Later on, I need to repackage info to interface with the correct ROS2 topic message formats for other plugins.
+        #This repackages raw IMU and magnetic field info from the MPU9250 into a proper Imu and Magnetic Field format topics
         aX = float(message_parts[1])
         aY = float(message_parts[2])
         aZ = float(message_parts[3])
@@ -120,7 +117,7 @@ class SerialSubscriber(Node):
         imu_msg.angular_velocity.y = gY
         imu_msg.angular_velocity.z = gZ
         
-        # Note: We're not setting orientation as it requires quaternion conversion
+        # Note: For now we're not setting orientation as it requires quaternion conversion
         
         self.IMU_publisher.publish(imu_msg)
 
@@ -163,7 +160,7 @@ class SerialSubscriber(Node):
         gps_msg.position_covariance[4] = covariance
         gps_msg.position_covariance[8] = covariance * 2  # Altitude uncertainty higher
         gps_msg.position_covariance_type = 1  # APPROXIMATED
-        #self.get_logger().info("Number of Satellites: "+str(satellites)) #FOR DEBUGGING
+        self.get_logger().info("Number of Satellites: "+str(satellites)) #FOR DEBUGGING
         self.GPS_publisher.publish(gps_msg)
 
     def handle_status(self, msg, message_parts):
