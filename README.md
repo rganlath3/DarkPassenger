@@ -5,13 +5,13 @@
 [![Status: In Development](https://img.shields.io/badge/Status-In%20Development-yellow.svg)]()
 
 
-A modular payload for use as a ROS learning platform. Each floor of the chassis delivers different capabilities. The initial design is mounted on a roomba.
+A modular payload for use as a ROS learning platform. Each floor of the chassis delivers different capabilities. The initial design is mounted on a differential drive roomba with plans to expand to treaded or quad-coptor platforms.
 
 ![Dark Passenger Iso View](/Visual_Documentation/ISOView03192025.png)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-The idea was to reuse a cheap roomba to create a platform for learning ROS and sensor integration. The end goal is to have a project incorporate aluminum extrusion, working with acrylic, ESP32-S3, stepper motors, thermal camera, depth camera, LIDAR, slip rings, DC motor controllers, encoders, 3D printing, INS sensor fusion, relays, GPS, and power distribution.  
+The idea was to reuse a cheap roomba to create a platform for learning ROS2 and sensor integration. The end goal is to have a project incorporate aluminum extrusion chassis, working with acrylic, ESP32-S3, KiCAD PCB Development, stepper motors, thermal camera, depth camera, LIDAR, slip rings, DC motor controllers, encoders, 3D printing, INS sensor fusion, relays, GPS, SLAM, NAV2 (navigation stack) and power distribution.
 
 ### Design Tools & Requirements
 
@@ -24,7 +24,7 @@ The idea was to reuse a cheap roomba to create a platform for learning ROS and s
 #### Hardware Requirements
 - Raspberry Pi 5
 - 32GB+ SD Card
-- 2x Dewalt 20VDC 2Ah Battery
+- 1x Dewalt 20VDC 2Ah Battery
 
 ## Hardware Development
 
@@ -32,21 +32,75 @@ The idea was to reuse a cheap roomba to create a platform for learning ROS and s
 Coming Soon
 
 ### Hardware Used
-TBD
+#### Chassis
+* 2020 T Slot Aluminum Extrusion
+* 2020 2-Way Corner Brackets
+* 2020 3-Way Corner Brackets
+* M5 T Nuts and Screws
+* 8x10 Black Translucent Acrylic Sheets 1/8" thick.
 
+#### Floor 1
+* 2x DROK Step Down Voltage Regulator
+* 2x 3V Relay Modules
+* 1x Custom Power Distribution PCB
+* 1x Custom ESP3 GPIO PCB
+* 1x ESP32-S3-N8R2
+* 1x COB LED Strip Yellow
+* 1x COB LED Strip Red
+* 1x Cytron Dual Channel 10A DC Motor Driver
+* 1x Quick Disconnect 12Pin Connector
+* 1x MPU9250 IMU
+* 1x GY-NEO6MV2 GPS Module
+
+#### Floor 2
+* 2x Acer USB Powered Hub
+* 1x Raspberry Pi 5 (SBC)
+* 1x Respeaker Microphone Array
+* 1x ZED Stereo Labs Depth Camera
+
+#### Floor 3
+* 1x A1M8 RPLIDAR LIDAR Sensor
+* 1x GPS Antenna
+
+#### Floor 4
+* 1x Custom ESP3 GPIO PCB
+* 1x ESP32-S3-N8R2
+* 1x Taidacent Hollow Slip Ring (Maybe 2x)
+* 1x 5mm Flange Coupler
+* 2x TMC2209 V1.3 Stepper Motor Driver
+* 2x NEMA 17 Stepper (2A, 59Ncm), 48mm
+* 1x Chameleon Camera Teledyne CM3-U3-13S2C-CS
+* 3x 3V Relay Modules
+* 1x MDD3A Dual Channel 3A DC Motor Driver
+* 1x NERF Gun Gearbox
+* 1x Laser Diode, 5V 1mA
+* 1x COB LED Strip Yellow
+* 1x 5V or 12V Cooling Fan
+
+#### Misc
+* Various Capacitors, Resistors, SMD LEDs, JST Connectors, Wire Crimps, etc.
+* Various stranded wire lengths and colors: 16AWG, 22AWG.
+* 1x 2.1mm DC Barrel Jacks Pair (Power Input)
+* 1x SPST 20A Heavy Duty Toggle Switch (Projector Power and Pi Power)
+* 2x SPST 5A Mini Toggle Switch (LED Power)
+* 3D Printer: Creality CR-10SProV2
+
+### Internal Block Diagram
+<img src="/Visual_Documentation/DarkPassengerInternalBlockDiagram.png" width="800">
 
 ### Electrical Interconnect Diagram
 [Electrical Interconnect Diagram](/Hardware_Development/DrawIO/DarkPassengerElectricalInterconnect.pdf)
+<img src="/Visual_Documentation/DarkPassengerElectricalInterconnectDiagram.png" width="800">
+
+
 
 ### PCBs
-
 #### Power Distribution PCB
 <img src="/Visual_Documentation/PowerDistro_ISOView.png" width="800">
 
-
 This PCB is used to stack 2x DC-DC converters below and a voltage cutoff board on the top. This PCB distributes power from battery inputs to get converted to 12V and 5V. It interfaces with the following components:
 
-- 2x 2Ah Dewalt Batteries
+- Up to 2x 2Ah Dewalt Batteries
 - Voltage Cutoff CCA (TBD)
 - 20VDC to 5VDC Converter (TBD)
 - 20VDC to 12VDC Converter (TBD)
@@ -55,7 +109,6 @@ This PCB is used to stack 2x DC-DC converters below and a voltage cutoff board o
 
 #### Base MCU PCB
 <img src="/Visual_Documentation/Base_MCU_ISOView.png" width="800">
-
 
 This PCB is used to interface an ESP32-S3 with the following components:
 
@@ -92,10 +145,8 @@ This PCB is used to interface an ESP32-S3 with the following components:
 - 5V Distribution
 - 12V Distribution
 
-### Wiring
-TBD
 
-### Power
+### Power Budget and Power Draw
 TBD
 
 ## Software Development
