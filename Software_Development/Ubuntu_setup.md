@@ -10,14 +10,27 @@
 ### Generic Software Tools to Install with Ubuntu 24.04
 sudo apt update
 sudo apt upgrade
-sudo apt install git terminator
+sudo apt install git terminator chromium-browser gedit python3-pip
 sudo snap install --classic code
 
 #### VSCode Extensions
 Remote Development by Microsoft
-
+CMake Tools by Microsoft
+C/C++ by Microsoft
+C/C++ Extension Pack by Microsoft
+Python by Microsoft
+Python Debugger by Microsoft
+Pylance by Microsoft
+ROS by Microsoft
+URDF by smilerobotics
+URDF Visualizer by morningfrog
+XML Tools by Josh Johnson
 
 ### Cloning this repo
+I have a ROS2 workspace built into the repo so all you need to do is clone this repo into a directory of your choice. I am using a folder called "github" in my root directory.
+cd ~/github/
+
+git clone https://github.com/rganlath3/DarkPassenger.git
 
 ### SSH Setup
 sudo apt install openssh-server
@@ -38,9 +51,11 @@ You should get ROS_VERSION=2, ROS_PYTHON_VERSION=3, and ROS_DISTRO=jazzy
 Navigate to the workspace and run this command to find the packages
 ```source install/setup.bash```
 
-Add the path of the ROS2 workspace to the startup script as well.
+Add the path of the ROS2 workspace to the startup script as well. (gedit ~/.bashrc)
 ```source /opt/ros/jazzy/setup.bash```
 ```source ~/github/DarkPassenger/ROS2/dp_ws/install/setup.bash```
+```cd ~/github/DarkPassenger/ROS2/dp_ws```
+
 
 
 #### Install ROS2 Tools and Gazebo Harmonic Simulator
@@ -76,13 +91,11 @@ Install Arduino 1.8.19 IDE
 Add permissions to use serial ports.
 ```sudo usermod -a -G dialout $USER```
 
-Note: You will need to log out and log back in for the changes to take effect. Install the Arduino IDE on your computer. This tutorial used 1.8.19. Verify the code works using the Arduino IDE serial monitor. If it works, record the device's serial port using the following command:
+Note: You will need to reboot your computer for the changes to take effect. Install the Arduino IDE on your computer. This tutorial used 1.8.19. Verify the code works using the Arduino IDE serial monitor. If it works, record the device's serial port using the following command:
 
 ```ls /dev/tty*```
 Note: The serial port will be /dev/ttyUSB* or /dev/ttyACM*. 
 
-Install the pyserial package on your computer using the following command:
-```pip install pyserial```
 
 Verify installation
 ```python3```
@@ -144,3 +157,6 @@ Note: This doesn't seem to be working as the output is not being configured corr
 
 ### ZED Depth Camera
 I am using an RGBD camera in Gazebo (URDF plugin) and passing the image and depth_image info using gz_bridge. For the depth point data, I am....
+
+The ZED camera requires CUDA meaning it needs an NVIDIA graphics card to run. The development machine or a JETSON must be used. 
+https://github.com/stereolabs/zed-ros2-wrapper
